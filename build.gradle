@@ -12,8 +12,10 @@ buildscript {
 
 apply plugin: 'java'
 apply plugin: 'eclipse'
+apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
+
 
 group = 'com.qingteng'
 version = '0.0.1-SNAPSHOT'
@@ -27,6 +29,8 @@ repositories {
 
 
 dependencies {
-	implementation('org.springframework.boot:spring-boot-starter-data-mongodb')
-	testImplementation('org.springframework.boot:spring-boot-starter-test')
+	compile('org.springframework.boot:spring-boot-starter-data-mongodb')
+    compile("org.springframework.boot:spring-boot-starter-web")
+    compile("org.springframework.boot:spring-boot-starter-thymeleaf")
+    testCompile('org.springframework.boot:spring-boot-starter-test')
 }
