@@ -8,14 +8,13 @@
       depends_on:
       - mongo
 #      - rabbitmq
-
       ports:
       - "8080:8080"
       networks:
       - springnet
 
     mongo:
-      image: mongo:4.0.2
+      image: mongo:latest
       restart: always
       ports:
       - "27017:27017"
