@@ -1,8 +1,8 @@
 package com.qingteng.demo.controller;
 
 
-import com.qingteng.demo.model.Person;
-import com.qingteng.demo.model.PersonRepository;
+import com.qingteng.demo.entity.Person;
+import com.qingteng.demo.respository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,7 +16,7 @@ public class HelloController {
 
 
     @Autowired
-    private PersonRepository repository;
+    private PersonRepository personRepository;
 
     public HelloController(HelloWorld helloWorld) {
         this.helloWorld = helloWorld;
@@ -33,12 +33,12 @@ public class HelloController {
     }
     @GetMapping("/anotherHelloworld1")
     public String anotherHello1() {
-        return repository.findByLastName("Smith").toString();
+        return personRepository.findAll().toString();
     }
 
     @PostMapping("/persion")
     public String addPersion(@RequestParam String firstName, @RequestParam String lastName) {
-         repository.save(new Person(firstName,lastName));
+        personRepository.save(new Person(firstName,lastName));
          return "ok";
     }
 }

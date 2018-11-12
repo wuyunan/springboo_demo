@@ -1,4 +1,4 @@
-package com.qingteng.demo.model;
+package com.qingteng.demo.entity;
 
 import org.springframework.data.annotation.Id;
 

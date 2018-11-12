@@ -1,4 +1,4 @@
-package com.qingteng.demo.model;
+package com.qingteng.demo.entity;
 
 import java.util.concurrent.CountDownLatch;
 import org.springframework.stereotype.Component;
