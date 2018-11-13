@@ -1,14 +1,15 @@
 package com.qingteng.demo.respository;
 
+import java.util.List;
 
 import com.qingteng.demo.entity.Person;
 import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.repository.query.Param;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
-/**
- * @DESC:PersonRepository
- * @author:timebusker
- * @date:2018/9/6
- */
-public interface PersonRepository extends AbstractBasicRepository, MongoRepository<Person, Integer> {
+@RepositoryRestResource(collectionResourceRel = "people", path = "people")
+public interface PersonRepository extends MongoRepository<Person, String> {
+
+	List<Person> findByLastName(@Param("name") String name);
 
 }
