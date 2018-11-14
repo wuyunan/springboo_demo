@@ -1,4 +1,4 @@
-package com.qingteng.demo.controller;
+package com.qingteng.demo.entity;
 
 import org.springframework.stereotype.Component;
 
