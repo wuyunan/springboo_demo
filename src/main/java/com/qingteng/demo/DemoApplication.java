@@ -1,12 +1,18 @@
 package com.qingteng.demo;
 
+import com.qingteng.demo.entity.CreditCard;
+import com.qingteng.demo.service.CreditCardService;
 import com.qingteng.demo.storage.StorageProperties;
 import com.qingteng.demo.storage.StorageService;
+import com.qingteng.demo.utils.CreditCardUtil;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
+
+import java.time.LocalDate;
+
 @SpringBootApplication
 @EnableConfigurationProperties(StorageProperties.class)
 public class DemoApplication {
@@ -19,6 +25,26 @@ public class DemoApplication {
     CommandLineRunner init(StorageService storageService) {
 
         System.out.println("init");
+
+
+        int dueDate = 13;
+        int satementDate = 25;
+
+
+        for (int i = 0; i < 365; i++) {
+            CreditCardUtil.getInterestholiday(LocalDate.now().plusDays(i), satementDate, dueDate);
+        }
+
+        dueDate = 5;
+        satementDate = 13;
+        System.out.println("==============");
+
+
+        for (int i = 0; i < 365; i++) {
+            CreditCardUtil.getInterestholiday(LocalDate.now().plusDays(i), satementDate, dueDate);
+        }
+
+
         return (args) -> {
             storageService.deleteAll();
             storageService.init();
