@@ -13,10 +13,10 @@ import java.math.BigDecimal;
 @Entity
 public class Book {
 
+
     @Id
     @GeneratedValue
     private Long id;
-
 
     @NotEmpty(message = "Please provide a name")
     private String name;
@@ -29,13 +29,18 @@ public class Book {
     @DecimalMin("1.00")
     private BigDecimal price;
 
-    //setters, getters, constructors...
-
-
+    // avoid this "No default constructor for entity"
     public Book() {
     }
 
-    public Book(@NotEmpty(message = "Please provide a name") String name, @NotEmpty(message = "Please provide a author") String author, @NotNull(message = "Please provide a price") @DecimalMin("1.00") BigDecimal price) {
+    public Book(Long id, String name, String author, BigDecimal price) {
+        this.id = id;
+        this.name = name;
+        this.author = author;
+        this.price = price;
+    }
+
+    public Book(String name, String author, BigDecimal price) {
         this.name = name;
         this.author = author;
         this.price = price;
@@ -71,5 +76,15 @@ public class Book {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", author='" + author + '\'' +
+                ", price=" + price +
+                '}';
     }
 }
