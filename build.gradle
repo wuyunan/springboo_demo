@@ -1,6 +1,8 @@
 buildscript {
     ext {
         springBootVersion = '2.1.0.RELEASE'
+        lombokVersion = '1.16.14'
+        jjwtVersion = '0.7.0'
     }
     repositories {
 
@@ -52,6 +54,7 @@ dependencies {
     // Use MySQL Connector-J
     compile 'mysql:mysql-connector-java'
     compile("org.projectlombok:lombok")
+    compile("io.jsonwebtoken:jjwt:${jjwtVersion}")
 
     compile("com.jcraft:jsch:0.1.55")
 
