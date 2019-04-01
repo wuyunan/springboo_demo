@@ -1,14 +1,18 @@
 package com.qingteng.demo.entity;
 
-import org.springframework.data.annotation.Id;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.io.Serializable;
 
-
+@Entity
 public class CreditCard implements Serializable {
 
     @Id
-    private String id;
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    private Long id;
     /**
      * 名称
      */
@@ -63,12 +67,13 @@ public class CreditCard implements Serializable {
     }
 
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public CreditCard setId(Long id) {
         this.id = id;
+        return this;
     }
 
     public String getName() {

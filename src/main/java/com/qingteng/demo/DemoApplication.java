@@ -1,14 +1,10 @@
 package com.qingteng.demo;
 
 import com.qingteng.demo.entity.Book;
-import com.qingteng.demo.entity.CreditCard;
 import com.qingteng.demo.respository.BookRepository;
-import com.qingteng.demo.service.CreditCardService;
-import com.qingteng.demo.service.RemoteExecuteCommand;
 import com.qingteng.demo.service.SSHManager;
 import com.qingteng.demo.storage.StorageProperties;
 import com.qingteng.demo.storage.StorageService;
-import com.qingteng.demo.utils.CreditCardUtil;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -16,7 +12,6 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 
 @SpringBootApplication
 @EnableConfigurationProperties(StorageProperties.class)

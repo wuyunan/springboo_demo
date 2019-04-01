@@ -39,23 +39,29 @@ repositories {
 
 
 dependencies {
-    compile('org.springframework.boot:spring-boot-starter-data-mongodb')
+//    compile('org.springframework.boot:spring-boot-starter-data-mongodb')
     compile("org.springframework.boot:spring-boot-starter-web")
     compile("org.springframework.boot:spring-boot-starter-thymeleaf")
     compile("org.springframework.boot:spring-boot-starter-data-rest")
     compile("org.projectlombok:lombok")
-    compile("org.springframework.boot:spring-boot-starter-data-jpa")
+
+    // JPA Data (We are going to use Repositories, Entities, Hibernate, etc...)
+    compile 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    // Use MySQL Connector-J
+    compile 'mysql:mysql-connector-java'
 
     compile("org.springframework.boot:spring-boot-starter-data-rest")
 
-    compile("com.h2database:h2")
     compile("com.jcraft:jsch:0.1.55")
     compile("org.springframework.boot:spring-boot-devtools")
 
     compile("org.apache.commons:commons-lang3:3.4")
-//    compile("org.springframework.boot:spring-boot-starter-amqp")
+    // compile("org.springframework.boot:spring-boot-starter-amqp")
+
+
     testCompile('org.springframework.boot:spring-boot-starter-test')
-}s
+}
 
 task unpack(type: Copy) {
     dependsOn bootJar

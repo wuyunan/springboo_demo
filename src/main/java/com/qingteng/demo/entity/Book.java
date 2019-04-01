@@ -4,6 +4,7 @@ import com.qingteng.demo.error.validator.Author;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotEmpty;
@@ -15,7 +16,7 @@ public class Book {
 
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
 
     @NotEmpty(message = "Please provide a name")
