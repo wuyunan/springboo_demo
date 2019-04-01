@@ -16,6 +16,9 @@ public class Customer {
     private String outTime;
     private String rssi;
 
+    public Customer() {
+    }
+
     public Customer(String probMac, String devcMac, String inTime,
                     String outTime, String rssi) {
         this.probMac = probMac;

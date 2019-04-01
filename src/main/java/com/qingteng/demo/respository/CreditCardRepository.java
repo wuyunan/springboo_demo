@@ -9,7 +9,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-@RepositoryRestResource(collectionResourceRel = "creditcard", path = "creditcards")
 public interface CreditCardRepository extends JpaRepository<CreditCard, Long> {
 
 	List<CreditCard> findByCardNumber(@Param("cardNumber") String cardNumber);

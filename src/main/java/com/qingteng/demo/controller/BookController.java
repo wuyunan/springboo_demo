@@ -39,7 +39,7 @@ public class BookController {
 
     // Find
     @GetMapping("/books/{id}")
-    Book findOne(@PathVariable @Min(1)  Long id) {
+    Book findOne( @Valid @PathVariable @Min(1)  Long id) {
         return repository.findById(id)
                 .orElseThrow(() -> new BookNotFoundException(id));
     }
