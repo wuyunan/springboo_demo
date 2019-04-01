@@ -16,8 +16,8 @@ import javax.validation.constraints.Min;
 import java.util.List;
 import java.util.Map;
 
-@Validated // class level
 @RestController
+@Validated
 public class BookController {
 
     @Autowired
@@ -30,16 +30,15 @@ public class BookController {
     }
 
     // Save
-    //return 201 instead of 200
-    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/books")
-    Book newBook( @Valid @RequestBody Book newBook) {
+    @ResponseStatus(HttpStatus.CREATED)
+    Book newBook(@Valid @RequestBody Book newBook) {
         return repository.save(newBook);
     }
 
     // Find
     @GetMapping("/books/{id}")
-    Book findOne( @Valid @PathVariable @Min(1)  Long id) {
+    Book findOne(@PathVariable @Min(1) Long id) {
         return repository.findById(id)
                 .orElseThrow(() -> new BookNotFoundException(id));
     }
