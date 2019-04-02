@@ -1,13 +1,18 @@
 package com.qingteng.demo.entity;
 
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.io.Serializable;
 
+@Data
 @Entity
+@NoArgsConstructor
 public class CreditCard implements Serializable {
 
     @Id
@@ -63,112 +68,7 @@ public class CreditCard implements Serializable {
      */
     private String lastFour;
 
-    public CreditCard() {
-    }
 
 
-    public Long getId() {
-        return id;
-    }
 
-    public CreditCard setId(Long id) {
-        this.id = id;
-        return this;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getCardNumber() {
-        return cardNumber;
-    }
-
-    public void setCardNumber(String cardNumber) {
-        this.cardNumber = cardNumber;
-    }
-
-    public int getStatementDate() {
-        return statementDate;
-    }
-
-    public void setStatementDate(int statementDate) {
-        this.statementDate = statementDate;
-    }
-
-    public int getDueDate() {
-        return dueDate;
-    }
-
-    public void setDueDate(int dueDate) {
-        this.dueDate = dueDate;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public Long getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Long createTime) {
-        this.createTime = createTime;
-    }
-
-    public String getInputSource() {
-        return inputSource;
-    }
-
-    public void setInputSource(String inputSource) {
-        this.inputSource = inputSource;
-    }
-
-    public Integer getExpirationMonth() {
-        return expirationMonth;
-    }
-
-    public void setExpirationMonth(Integer expirationMonth) {
-        this.expirationMonth = expirationMonth;
-    }
-
-    public Integer getExpirationYear() {
-        return expirationYear;
-    }
-
-    public void setExpirationYear(Integer expirationYear) {
-        this.expirationYear = expirationYear;
-    }
-
-    public String getLastFour() {
-        return lastFour;
-    }
-
-    public void setLastFour(String lastFour) {
-        this.lastFour = lastFour;
-    }
 }

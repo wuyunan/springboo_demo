@@ -1,11 +1,17 @@
 package com.qingteng.demo.entity;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+
+@Data
 @Entity
+@NoArgsConstructor
 public class Customer {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
@@ -16,8 +22,6 @@ public class Customer {
     private String outTime;
     private String rssi;
 
-    public Customer() {
-    }
 
     public Customer(String probMac, String devcMac, String inTime,
                     String outTime, String rssi) {
@@ -29,54 +33,6 @@ public class Customer {
     }
 
 
-    public Long getId() {
-        return id;
-    }
-
-    public Customer setId(Long id) {
-        this.id = id;
-        return this;
-    }
-
-    public String getInTime() {
-        return inTime;
-    }
-
-    public void setInTime(String inTime) {
-        this.inTime = inTime;
-    }
-
-    public String getOutTime() {
-        return outTime;
-    }
-
-    public void setOutTime(String outTime) {
-        this.outTime = outTime;
-    }
-
-    public String getProbMac() {
-        return probMac;
-    }
-
-    public void setProbMac(String probMac) {
-        this.probMac = probMac;
-    }
-
-    public String getDevcMac() {
-        return devcMac;
-    }
-
-    public void setDevcMac(String devcMac) {
-        this.devcMac = devcMac;
-    }
-
-    public String getRssi() {
-        return rssi;
-    }
-
-    public void setRssi(String rssi) {
-        this.rssi = rssi;
-    }
 
     @Override
     public String toString() {
