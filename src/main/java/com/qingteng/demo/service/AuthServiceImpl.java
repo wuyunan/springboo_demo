@@ -1,8 +1,9 @@
 package com.qingteng.demo.service;
+
 import com.qingteng.demo.entity.JwtUser;
 import com.qingteng.demo.entity.User;
+import com.qingteng.demo.jwt.JwtTokenUtil;
 import com.qingteng.demo.respository.UserRepository;
-import com.qingteng.demo.utils.JwtTokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -21,30 +22,25 @@ import static java.util.Arrays.asList;
 @Service
 public class AuthServiceImpl implements AuthService {
 
+    @Autowired
     private AuthenticationManager authenticationManager;
+
+    @Autowired
     private UserDetailsService userDetailsService;
+
+    @Autowired
     private JwtTokenUtil jwtTokenUtil;
+    @Autowired
     private UserRepository userRepository;
 
     @Value("${jwt.tokenHead}")
     private String tokenHead;
 
-    @Autowired
-    public AuthServiceImpl(
-            AuthenticationManager authenticationManager,
-            UserDetailsService userDetailsService,
-            JwtTokenUtil jwtTokenUtil,
-            UserRepository userRepository) {
-        this.authenticationManager = authenticationManager;
-        this.userDetailsService = userDetailsService;
-        this.jwtTokenUtil = jwtTokenUtil;
-        this.userRepository = userRepository;
-    }
 
     @Override
     public User register(User userToAdd) {
         final String username = userToAdd.getUsername();
-        if(userRepository.findByUsername(username)!=null) {
+        if (userRepository.findByUsername(username) != null) {
             return null;
         }
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
@@ -73,7 +69,7 @@ public class AuthServiceImpl implements AuthService {
         final String token = oldToken.substring(tokenHead.length());
         String username = jwtTokenUtil.getUsernameFromToken(token);
         JwtUser user = (JwtUser) userDetailsService.loadUserByUsername(username);
-        if (jwtTokenUtil.canTokenBeRefreshed(token, user.getLastPasswordResetDate())){
+        if (jwtTokenUtil.canTokenBeRefreshed(token, user.getLastPasswordResetDate())) {
             return jwtTokenUtil.refreshToken(token);
         }
         return null;

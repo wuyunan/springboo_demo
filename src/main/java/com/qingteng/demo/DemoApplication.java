@@ -27,6 +27,16 @@ public class DemoApplication {
         System.out.println("init");
 
 
+        sshCommand();
+
+
+        return (args) -> {
+            storageService.deleteAll();
+            storageService.init();
+        };
+    }
+
+    private void sshCommand() {
         String username="root";
 //        String password="wuyunan+";
 //        String hostname="115.159.149.28";
@@ -50,12 +60,6 @@ public class DemoApplication {
         instance.close();
 
         System.out.println(result);
-
-
-        return (args) -> {
-            storageService.deleteAll();
-            storageService.init();
-        };
     }
 
     @Bean

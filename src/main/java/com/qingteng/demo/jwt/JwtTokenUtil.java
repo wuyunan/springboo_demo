@@ -1,4 +1,4 @@
-package com.qingteng.demo.utils;
+package com.qingteng.demo.jwt;
 
 import com.qingteng.demo.entity.JwtUser;
 import io.jsonwebtoken.Claims;
@@ -21,7 +21,7 @@ public class JwtTokenUtil implements Serializable {
     private static final String CLAIM_KEY_USERNAME = "sub";
     private static final String CLAIM_KEY_CREATED = "created";
 
-    @Value("${jwt.TokenSecret}")
+    @Value("${jwt.tokenSecret}")
     private String secret;
 
     @Value("${jwt.tokenExpiredMs}")

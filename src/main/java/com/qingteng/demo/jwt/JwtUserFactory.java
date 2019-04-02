@@ -1,4 +1,4 @@
-package com.qingteng.demo.utils;
+package com.qingteng.demo.jwt;
 
 import com.qingteng.demo.entity.JwtUser;
 import com.qingteng.demo.entity.User;

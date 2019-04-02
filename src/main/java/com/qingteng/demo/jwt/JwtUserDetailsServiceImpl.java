@@ -1,8 +1,7 @@
-package com.qingteng.demo.service;
+package com.qingteng.demo.jwt;
 
 import com.qingteng.demo.entity.User;
 import com.qingteng.demo.respository.UserRepository;
-import com.qingteng.demo.utils.JwtUserFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -11,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class JwtUserDetailsServiceImpl implements UserDetailsService {
+
 
     @Autowired
     private UserRepository userRepository;

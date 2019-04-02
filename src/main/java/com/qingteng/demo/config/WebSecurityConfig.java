@@ -2,12 +2,16 @@ package com.qingteng.demo.config;
 
 import com.qingteng.demo.jwt.JwtAuthenticationEntryPoint;
 import com.qingteng.demo.jwt.JwtAuthenticationTokenFilter;
+import com.qingteng.demo.jwt.JwtUserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -15,28 +19,25 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+@SuppressWarnings("SpringJavaAutowiringInspection")
 @Configuration
+@EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 
     @Autowired
     private JwtAuthenticationEntryPoint unauthorizedHandler;
 
+    @Bean
+    public UserDetailsService userDetailsService() {
+        return new JwtUserDetailsServiceImpl();
+    }
 
-    // Spring会自动寻找同样类型的具体类注入，这里就是JwtUserDetailsServiceImpl了
-    @Autowired
-    private UserDetailsService userDetailsService;
-
-
-    // Create 2 users for demo
+    @Bean
     @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-
-        auth.inMemoryAuthentication()
-                .withUser("user").password("{noop}password").roles("USER")
-                .and()
-                .withUser("admin").password("{noop}password").roles("USER", "ADMIN");
-
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
     }
 
 
@@ -44,7 +45,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public void configureAuthentication(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
         authenticationManagerBuilder
                 // 设置UserDetailsService
-                .userDetailsService(this.userDetailsService)
+                .userDetailsService(userDetailsService())
                 // 使用BCrypt进行密码的hash
                 .passwordEncoder(passwordEncoder());
     }
@@ -65,19 +66,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
 
-//        http
-//                //HTTP Basic authentication
-//                .httpBasic()
-//                .and()
-//                .authorizeRequests()
-//                .antMatchers(HttpMethod.GET, "/books/**").hasRole("USER")
-//                .antMatchers(HttpMethod.POST, "/books").hasRole("ADMIN")
-//                .antMatchers(HttpMethod.PUT, "/books/**").hasRole("ADMIN")
-//                .antMatchers(HttpMethod.PATCH, "/books/**").hasRole("ADMIN")
-//                .antMatchers(HttpMethod.DELETE, "/books/**").hasRole("ADMIN")
-//                .and()
-//                .csrf().disable()
-//                .formLogin().disable();
 
         httpSecurity
                 // 由于使用的是JWT，我们这里不需要csrf
@@ -114,15 +102,5 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         httpSecurity.headers().cacheControl();
     }
 
-    /*@Bean
-    public UserDetailsService userDetailsService() {
-        //ok for demo
-        User.UserBuilder users = User.withDefaultPasswordEncoder();
-
-        InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
-        manager.createUser(users.username("user").password("password").roles("USER").build());
-        manager.createUser(users.username("admin").password("password").roles("USER", "ADMIN").build());
-        return manager;
-    }*/
 
 }
