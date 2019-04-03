@@ -1,5 +1,6 @@
 package com.qingteng.demo.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -12,6 +13,7 @@ import javax.validation.constraints.NotEmpty;
 @Data
 @Entity
 @NoArgsConstructor
+@AllArgsConstructor
 public class Role {
 
     @Id

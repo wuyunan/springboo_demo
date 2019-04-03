@@ -1,8 +1,10 @@
 package com.qingteng.demo.service;
 
 import com.qingteng.demo.entity.JwtUser;
+import com.qingteng.demo.entity.Role;
 import com.qingteng.demo.entity.User;
 import com.qingteng.demo.jwt.JwtTokenUtil;
+import com.qingteng.demo.respository.RoleRepository;
 import com.qingteng.demo.respository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -29,6 +31,9 @@ public class AuthServiceImpl implements AuthService {
     private UserDetailsService userDetailsService;
 
     @Autowired
+    private RoleRepository roleRepository;
+
+    @Autowired
     private JwtTokenUtil jwtTokenUtil;
     @Autowired
     private UserRepository userRepository;
@@ -47,7 +52,8 @@ public class AuthServiceImpl implements AuthService {
         final String rawPassword = userToAdd.getPassword();
         userToAdd.setPassword(encoder.encode(rawPassword));
         userToAdd.setLastPasswordResetDate(new Date());
-        userToAdd.setRoles(asList("ROLE_USER"));
+        Role role = roleRepository.findByName("ROLE_USER");
+        userToAdd.setRoles(asList(role));
         return userRepository.save(userToAdd);
     }
 

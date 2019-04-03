@@ -27,6 +27,11 @@ public class JwtTokenUtil implements Serializable {
     @Value("${jwt.tokenExpiredMs}")
     private Long expiration;
 
+    /**
+     *
+     * @param token
+     * @return
+     */
     public String getUsernameFromToken(String token) {
         String username;
         try {
@@ -38,6 +43,11 @@ public class JwtTokenUtil implements Serializable {
         return username;
     }
 
+    /**
+     *
+     * @param token
+     * @return
+     */
     public Date getCreatedDateFromToken(String token) {
         Date created;
         try {
@@ -49,6 +59,11 @@ public class JwtTokenUtil implements Serializable {
         return created;
     }
 
+    /**
+     *
+     * @param token
+     * @return
+     */
     public Date getExpirationDateFromToken(String token) {
         Date expiration;
         try {
@@ -60,6 +75,11 @@ public class JwtTokenUtil implements Serializable {
         return expiration;
     }
 
+    /**
+     *
+     * @param token
+     * @return
+     */
     private Claims getClaimsFromToken(String token) {
         Claims claims;
         try {
@@ -73,19 +93,39 @@ public class JwtTokenUtil implements Serializable {
         return claims;
     }
 
+    /**
+     *
+     * @return
+     */
     private Date generateExpirationDate() {
         return new Date(System.currentTimeMillis() + expiration * 1000);
     }
 
+    /**
+     *
+     * @param token
+     * @return
+     */
     private Boolean isTokenExpired(String token) {
         final Date expiration = getExpirationDateFromToken(token);
         return expiration.before(new Date());
     }
 
+    /**
+     *
+     * @param created
+     * @param lastPasswordReset
+     * @return
+     */
     private Boolean isCreatedBeforeLastPasswordReset(Date created, Date lastPasswordReset) {
         return (lastPasswordReset != null && created.before(lastPasswordReset));
     }
 
+    /**
+     *
+     * @param userDetails
+     * @return
+     */
     public String generateToken(UserDetails userDetails) {
         Map<String, Object> claims = new HashMap<>();
         claims.put(CLAIM_KEY_USERNAME, userDetails.getUsername());
@@ -93,6 +133,11 @@ public class JwtTokenUtil implements Serializable {
         return generateToken(claims);
     }
 
+    /**
+     *
+     * @param claims
+     * @return
+     */
     String generateToken(Map<String, Object> claims) {
         return Jwts.builder()
                 .setClaims(claims)
@@ -101,12 +146,23 @@ public class JwtTokenUtil implements Serializable {
                 .compact();
     }
 
+    /**
+     *
+     * @param token
+     * @param lastPasswordReset
+     * @return
+     */
     public Boolean canTokenBeRefreshed(String token, Date lastPasswordReset) {
         final Date created = getCreatedDateFromToken(token);
         return !isCreatedBeforeLastPasswordReset(created, lastPasswordReset)
                 && !isTokenExpired(token);
     }
 
+    /**
+     *
+     * @param token
+     * @return
+     */
     public String refreshToken(String token) {
         String refreshedToken;
         try {
@@ -119,6 +175,12 @@ public class JwtTokenUtil implements Serializable {
         return refreshedToken;
     }
 
+    /**
+     *
+     * @param token
+     * @param userDetails
+     * @return
+     */
     public Boolean validateToken(String token, UserDetails userDetails) {
         JwtUser user = (JwtUser) userDetails;
         final String username = getUsernameFromToken(token);

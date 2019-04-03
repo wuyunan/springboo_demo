@@ -2,6 +2,7 @@ package com.qingteng.demo.entity;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -23,10 +24,9 @@ public class User {
     private String email;
     private Date lastPasswordResetDate;
 
-
-    @OneToMany(targetEntity=Role.class,
+    @OneToMany(cascade = CascadeType.ALL,targetEntity=Role.class,
             fetch=FetchType.EAGER)
-    private List<String> roles;
+    private List<Role> roles;
 
 
 }
