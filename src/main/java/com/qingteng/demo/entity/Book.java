@@ -1,6 +1,8 @@
 package com.qingteng.demo.entity;
 
 import com.qingteng.demo.error.validator.Author;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import javax.persistence.Entity;
@@ -14,6 +16,7 @@ import java.math.BigDecimal;
 
 @Entity
 @Data
+@ApiModel("书籍")
 public class Book {
 
 
@@ -21,6 +24,7 @@ public class Book {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
 
+    @ApiModelProperty("书名")
     @NotEmpty(message = "Please provide a name")
     private String name;
 

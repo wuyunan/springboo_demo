@@ -1,17 +1,41 @@
-  version: "3"
+version: "3"
 
-  services:
-    api:
-      image: wuyunan/spring-boot-vultr
-      container_name: spring-boot-vultr
-      restart: always
-#      depends_on:
-#      - mongo
-#      - rabbitmq
-      ports:
+services:
+  demo:
+    image: wuyunan/spring-boot-vultr
+    container_name: spring-boot-vultr
+    restart: always
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+    ports:
       - "8080:8080"
-      networks:
+    depends_on:
+      - mysql
+      #      - rabbitmq
+    networks:
       - springnet
+
+  mysql:
+    image: mysql:8.0.13
+    container_name: mysql
+    restart: always
+    environment:
+      - MYSQL_DATABASE=test
+      - MYSQL_ROOT_PASSWORD=123456
+      - TZ=Asia/Shanghai
+    command:
+      --max_allowed_packet=32505856
+      --default-authentication-plugin=mysql_native_password
+    ports:
+      - "3306:3306"
+    networks:
+      - springnet
+      #    redis:
+      ##      image: redis:4.0.12
+      ##      container_name: redis-master
+      ##      restart: always
+      ##      networks:
+      ##        - springnet
 
 #    mongo:
 #      image: mongo:latest
@@ -31,5 +55,5 @@
 #      networks:
 #      - apinet
 
-  networks:
-    springnet:
+networks:
+  springnet:

@@ -5,6 +5,7 @@ import com.qingteng.demo.entity.Book;
 import com.qingteng.demo.error.BookNotFoundException;
 import com.qingteng.demo.error.BookUnSupportedFieldPatchException;
 import com.qingteng.demo.respository.BookRepository;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.util.StringUtils;
@@ -16,6 +17,7 @@ import javax.validation.constraints.Min;
 import java.util.List;
 import java.util.Map;
 
+@Api(value = "书籍", description = "书籍")
 @RestController
 @Validated
 public class BookController {

@@ -1,7 +1,5 @@
 package com.qingteng.demo;
 
-import com.qingteng.demo.entity.Book;
-import com.qingteng.demo.respository.BookRepository;
 import com.qingteng.demo.service.SSHManager;
 import com.qingteng.demo.storage.StorageProperties;
 import com.qingteng.demo.storage.StorageService;
@@ -11,11 +9,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 
-import java.math.BigDecimal;
-
 @SpringBootApplication
 @EnableConfigurationProperties(StorageProperties.class)
 public class DemoApplication {
+
 
     public static void main(String[] args) {
         SpringApplication.run(DemoApplication.class, args);
@@ -23,13 +20,7 @@ public class DemoApplication {
 
     @Bean
     CommandLineRunner init(StorageService storageService) {
-
-        System.out.println("init");
-
-
-        sshCommand();
-
-
+//        sshCommand();
         return (args) -> {
             storageService.deleteAll();
             storageService.init();
@@ -37,17 +28,16 @@ public class DemoApplication {
     }
 
     private void sshCommand() {
-        String username="root";
+        String username = "root";
 //        String password="wuyunan+";
 //        String hostname="115.159.149.28";
-        String password="n2(MnF1zWcw-)*%f";
-        String hostname="149.28.49.208";
+        String password = "n2(MnF1zWcw-)*%f";
+        String hostname = "149.28.49.208";
 
         SSHManager instance = new SSHManager(username, password, hostname, "");
         String errorMessage = instance.connect();
 
-        if(errorMessage != null)
-        {
+        if (errorMessage != null) {
             System.out.println(errorMessage);
         }
 //        String command = "docker run -d -p 443:8989 oddrationale/docker-shadowsocks -s 0.0.0.0 -p 8989 -k wuyunan+ -m aes-256-cfb";
@@ -62,19 +52,20 @@ public class DemoApplication {
         System.out.println(result);
     }
 
-    @Bean
-    CommandLineRunner initDatabase(BookRepository repository) {
-        return args -> {
-            repository.save(new Book("A Guide to the Bodhisattva Way of Life", "Santideva", new BigDecimal("15.41")));
-            repository.save(new Book("The Life-Changing Magic of Tidying Up", "Marie Kondo", new BigDecimal("9.69")));
-            repository.save(new Book("Refactoring: Improving the Design of Existing Code", "Martin Fowler", new BigDecimal("47.99")));
-        };
-    }
+//    @Bean
+//    CommandLineRunner initDatabase(BookRepository repository) {
+//        return args -> {
+//            repository.save(new Book("A Guide to the Bodhisattva Way of Life", "Santideva", new BigDecimal("15.41")));
+//            repository.save(new Book("The Life-Changing Magic of Tidying Up", "Marie Kondo", new BigDecimal("9.69")));
+//            repository.save(new Book("Refactoring: Improving the Design of Existing Code", "Martin Fowler", new BigDecimal("47.99")));
+//        };
+//    }
 
 
     static final String topicExchangeName = "spring-boot-exchange";
 
     static final String queueName = "spring-boot";
+
 
 //    @Bean
 //    Queue queue() {
