@@ -1,8 +1,10 @@
-package com.qingteng.demo.controller;
+package com.qingteng.demo.config;
 
+import de.pentabyte.springfox.ApiEnumDescriptionPlugin;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -16,6 +18,9 @@ import java.util.Date;
 
 @Configuration
 @EnableSwagger2
+@Import({springfox.bean.validators.configuration.BeanValidatorPluginsConfiguration.class,
+        ApiEnumDescriptionPlugin.class,})
+
 public class Swagger2Config {
 
     public static final String BASE_PACKAGE = "com.qingteng.demo";
