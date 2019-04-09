@@ -47,3 +47,6 @@ spring:
         history-level: full
 swagger:
     enable: true
+
+server:
+    port: 80
