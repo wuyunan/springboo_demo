@@ -28,7 +28,7 @@ spring:
                 dialect: org.hibernate.dialect.MySQL5InnoDBDialect
                 format_sql: true
                 hbm2ddl:
-                    auto: create
+                    auto: update
                     import_files_sql_extractor: org.hibernate.tool.hbm2ddl.MultipleLinesSqlCommandExtractor
     profiles:
         active: demo
@@ -36,5 +36,15 @@ spring:
         multipart:
             max-file-size: 128KB
             max-request-size: 128KB
+
+    # activiti default configuration
+    activiti:
+        database-schema-update: true
+        check-process-definitions: true
+        process-definition-location-prefix: classpath:/processes/
+        #    process-definition-location-suffixes:
+        #      - **.bpmn
+        #      - **.bpmn20.xml
+        history-level: full
 swagger:
     enable: true

@@ -3,7 +3,9 @@ package com.qingteng.demo.entity;
 import com.qingteng.demo.error.validator.Author;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,11 +19,13 @@ import java.math.BigDecimal;
 @Entity
 @Data
 @ApiModel("书籍")
+@AllArgsConstructor
+@NoArgsConstructor
 public class Book {
 
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @ApiModelProperty("书名")
@@ -37,21 +41,6 @@ public class Book {
     private BigDecimal price;
 
     // avoid this "No default constructor for entity"
-    public Book() {
-    }
-
-    public Book(Long id, String name, String author, BigDecimal price) {
-        this.id = id;
-        this.name = name;
-        this.author = author;
-        this.price = price;
-    }
-
-    public Book(String name, String author, BigDecimal price) {
-        this.name = name;
-        this.author = author;
-        this.price = price;
-    }
 
     @Override
     public String toString() {
