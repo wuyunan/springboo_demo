@@ -1,13 +1,19 @@
 package com.qingteng.demo.controller;
 
 
+import com.qingteng.demo.DemoApplication;
 import com.qingteng.demo.entity.Book;
 import com.qingteng.demo.error.BookNotFoundException;
 import com.qingteng.demo.error.BookUnSupportedFieldPatchException;
 import com.qingteng.demo.respository.BookRepository;
 import io.swagger.annotations.Api;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -22,13 +28,25 @@ import java.util.Map;
 @Validated
 public class BookController {
 
-    @Autowired
+  private static final Logger logger = LoggerFactory.getLogger(BookController.class);
+
+  @Autowired
     private BookRepository repository;
 
     // Find
+    @PreAuthorize("hasAnyRole('ROLE_USER')")
     @GetMapping("/books")
-    List<Book> findAll() {
-        return repository.findAll();
+    List<Book> findAll(Authentication authentication) {
+
+//     authentication.getPrincipal();
+      logger.info(authentication.getPrincipal().toString());
+
+      Object principal =  SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+      logger.info(principal.toString());
+
+
+      return repository.findAll();
     }
 
     // Save

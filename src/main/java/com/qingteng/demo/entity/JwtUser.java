@@ -86,4 +86,16 @@ public class JwtUser implements UserDetails {
     public Date getLastPasswordResetDate() {
         return lastPasswordResetDate;
     }
+
+    @Override
+    public String toString() {
+        return "JwtUser{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", authorities=" + authorities +
+                ", lastPasswordResetDate=" + lastPasswordResetDate +
+                '}';
+    }
 }

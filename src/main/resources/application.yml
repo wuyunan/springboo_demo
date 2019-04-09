@@ -3,7 +3,6 @@ jwt:
     authrefresh: refresh
     header: Authorization
     tokenExpiredMs: 604800000
-    tokenHead: 'Bearer '
     tokenSecret: qingteng
 
 logging:

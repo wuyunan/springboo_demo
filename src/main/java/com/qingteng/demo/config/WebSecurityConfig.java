@@ -70,15 +70,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         httpSecurity
                 // 由于使用的是JWT，我们这里不需要csrf
                 .csrf().disable()
-
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
-
                 // 基于token，所以不需要session
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-
                 .authorizeRequests()
                 //.antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-
                 // 允许对于网站静态资源的无授权访问
                 .antMatchers(HttpMethod.GET,
                         "/v2/api-docs**",

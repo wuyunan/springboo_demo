@@ -24,60 +24,57 @@ import static java.util.Arrays.asList;
 @Service
 public class AuthServiceImpl implements AuthService {
 
-    @Autowired
-    private AuthenticationManager authenticationManager;
+  @Autowired
+  private AuthenticationManager authenticationManager;
 
-    @Autowired
-    private UserDetailsService userDetailsService;
+  @Autowired
+  private UserDetailsService userDetailsService;
 
-    @Autowired
-    private RoleRepository roleRepository;
+  @Autowired
+  private RoleRepository roleRepository;
 
-    @Autowired
-    private JwtTokenUtil jwtTokenUtil;
-    @Autowired
-    private UserRepository userRepository;
-
-    @Value("${jwt.tokenHead}")
-    private String tokenHead;
+  @Autowired
+  private JwtTokenUtil jwtTokenUtil;
+  @Autowired
+  private UserRepository userRepository;
 
 
-    @Override
-    public User register(User userToAdd) {
-        final String username = userToAdd.getUsername();
-        if (userRepository.findByUsername(username) != null) {
-            return null;
-        }
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        final String rawPassword = userToAdd.getPassword();
-        userToAdd.setPassword(encoder.encode(rawPassword));
-        userToAdd.setLastPasswordResetDate(new Date());
-        Role role = roleRepository.findByName("ROLE_USER");
-        userToAdd.setRoles(asList(role));
-        return userRepository.save(userToAdd);
+  @Override
+  public User register(User userToAdd) {
+    final String username = userToAdd.getUsername();
+    if (userRepository.findByUsername(username) != null) {
+      return null;
     }
+    BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+    final String rawPassword = userToAdd.getPassword();
+    userToAdd.setPassword(encoder.encode(rawPassword));
+    userToAdd.setLastPasswordResetDate(new Date());
+    Role role = roleRepository.findByName("ROLE_USER");
+    userToAdd.setRoles(asList(role));
+    return userRepository.save(userToAdd);
+  }
 
-    @Override
-    public String login(String username, String password) {
-        UsernamePasswordAuthenticationToken upToken = new UsernamePasswordAuthenticationToken(username, password);
-        // Perform the security
-        final Authentication authentication = authenticationManager.authenticate(upToken);
-        SecurityContextHolder.getContext().setAuthentication(authentication);
+  @Override
+  public String login(String username, String password) {
+    UsernamePasswordAuthenticationToken upToken = new UsernamePasswordAuthenticationToken(username, password);
+    // Perform the security
+    final Authentication authentication = authenticationManager.authenticate(upToken);
+    SecurityContextHolder.getContext().setAuthentication(authentication);
 
-        // Reload password post-security so we can generate token
-        final UserDetails userDetails = userDetailsService.loadUserByUsername(username);
-        final String token = jwtTokenUtil.generateToken(userDetails);
-        return token;
+    // Reload password post-security so we can generate token
+    final UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+    final String token = jwtTokenUtil.generateToken(userDetails);
+    return token;
+  }
+
+  @Override
+  public String refresh(String oldToken) {
+    final String token = oldToken;
+    String username = jwtTokenUtil.getUsernameFromToken(token);
+    JwtUser user = (JwtUser) userDetailsService.loadUserByUsername(username);
+    if (jwtTokenUtil.canTokenBeRefreshed(token, user.getLastPasswordResetDate())) {
+      return jwtTokenUtil.refreshToken(token);
     }
-
-    @Override
-    public String refresh(String oldToken) {
-        final String token = oldToken.substring(tokenHead.length());
-        String username = jwtTokenUtil.getUsernameFromToken(token);
-        JwtUser user = (JwtUser) userDetailsService.loadUserByUsername(username);
-        if (jwtTokenUtil.canTokenBeRefreshed(token, user.getLastPasswordResetDate())) {
-            return jwtTokenUtil.refreshToken(token);
-        }
-        return null;
-    }
+    return null;
+  }
 }
