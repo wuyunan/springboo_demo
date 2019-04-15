@@ -57,14 +57,19 @@ dependencies {
     compile 'org.springframework.boot:spring-boot-starter-data-jpa'
     compile("org.springframework.boot:spring-boot-starter-data-rest")
     // compile('org.springframework.boot:spring-boot-starter-data-mongodb')
+
+    compile('org.springframework.boot:spring-boot-starter-data-redis')
+
     compile("org.springframework.boot:spring-boot-devtools")
     compile("org.springframework.boot:spring-boot-starter-security")
     compile("org.springframework.boot:spring-boot-starter-actuator")
+    compile("org.springframework.boot:spring-boot-starter-websocket")
+    compile("org.springframework.security:spring-security-messaging")
+
 //    compile("org.springframework.boot:spring-boot-starter-log4j2")
 
     // Use MySQL Connector-J
     compile 'mysql:mysql-connector-java'
-
 
     compile("io.jsonwebtoken:jjwt:${jjwtVersion}")
     compile("com.querydsl:querydsl-core:${queryDslVersion}")
@@ -86,6 +91,9 @@ dependencies {
     compile("org.activiti:activiti-spring:${activitiVersion}")
     compile("org.activiti:activiti-rest:${activitiVersion}")
     compile("org.activiti:activiti-json-converter:${activitiVersion}")
+
+
+    compile('com.amazonaws:aws-java-sdk-s3:1.11.483')
 
     compileOnly("org.projectlombok:lombok:${lombokVersion}")
     annotationProcessor(

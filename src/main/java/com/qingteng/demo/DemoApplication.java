@@ -63,21 +63,21 @@ public class DemoApplication {
     System.out.println(result);
   }
 
-  @Bean
-  CommandLineRunner initDatabase(BookRepository repository) {
-    return args -> {
-
-      Author author = new Author();
-      author.setName("Alibaba");
-      Book book = new Book();
-      List<Author> authors = new ArrayList<>();
-      authors.add(author);
-      book.setAuthors(authors);
-      book.setName("A Guide to the Bodhisattva Way of Life");
-      book.setPrice(new BigDecimal("15.41"));
-      repository.save(book);
-    };
-  }
+//  @Bean
+//  CommandLineRunner initDatabase(BookRepository repository) {
+//    return args -> {
+//
+//      Author author = new Author();
+//      author.setName("Alibaba");
+//      Book book = new Book();
+//      List<Author> authors = new ArrayList<>();
+//      authors.add(author);
+//      book.setAuthors(authors);
+//      book.setName("A Guide to the Bodhisattva Way of Life");
+//      book.setPrice(new BigDecimal("15.41"));
+//      repository.save(book);
+//    };
+//  }
 
 
   static final String topicExchangeName = "spring-boot-exchange";
