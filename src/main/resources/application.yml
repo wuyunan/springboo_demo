@@ -59,3 +59,11 @@ amazonProperties:
     secretKey: 9+Cs2PwzapKAgqBugOpxJ3UXCmyc7hgc3XAV05yc
     bucketName: crowdsource-uploaded-test
     region: cn-north-1
+
+sms:
+    enabled: false
+    validate.max: 999
+    sign-name: \u4E92\u751F\u4FE1\u606F
+    ali:
+        access-key-id: LTAIRstlNrvlUOMg
+        template-code: SMS_149980229

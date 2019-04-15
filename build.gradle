@@ -70,7 +70,10 @@ dependencies {
 
     // Use MySQL Connector-J
     compile 'mysql:mysql-connector-java'
-
+    compile 'com.aliyun:aliyun-java-sdk-core:4.0.2'
+    compile 'com.yunpian.sdk:yunpian-java-sdk:1.2.7'
+    compile 'com.alibaba:fastjson:1.2.15'
+    compile 'de.pentabyte:springfox-enum-plugin:1.1.1'
     compile("io.jsonwebtoken:jjwt:${jjwtVersion}")
     compile("com.querydsl:querydsl-core:${queryDslVersion}")
     compile("com.querydsl:querydsl-jpa:${queryDslVersion}")
