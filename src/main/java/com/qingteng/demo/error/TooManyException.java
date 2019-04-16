@@ -11,17 +11,17 @@ import org.springframework.web.bind.annotation.ResponseStatus;
  */
 @ResponseStatus(HttpStatus.TOO_MANY_REQUESTS)
 public class TooManyException extends RuntimeException {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	public TooManyException() {
-		super();
-	}
+    public TooManyException() {
+        super();
+    }
 
-	public TooManyException(String message) {
-		super(message);
-	}
+    public TooManyException(String message) {
+        super(message);
+    }
 
-	public TooManyException(String message, Throwable cause) {
-		super(message, cause);
-	}
+    public TooManyException(String message, Throwable cause) {
+        super(message, cause);
+    }
 }

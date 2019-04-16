@@ -16,7 +16,7 @@ import javax.validation.constraints.NotEmpty;
 @ApiModel("任务")
 public class Task {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @ApiModelProperty("书名")

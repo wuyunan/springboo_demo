@@ -32,82 +32,82 @@ import java.util.List;
 @Validated
 public class BookController {
 
-  private static final Logger logger = LoggerFactory.getLogger(BookController.class);
+    private static final Logger logger = LoggerFactory.getLogger(BookController.class);
 
-  @Autowired
-  private BookRepository repository;
+    @Autowired
+    private BookRepository repository;
 
-  @Autowired
-  private AuthorRepository authorRepository;
+    @Autowired
+    private AuthorRepository authorRepository;
 
-  // Find
-  @PreAuthorize("hasAnyRole('ROLE_USER')")
-  @GetMapping("/books")
-  List<Book> findAll(Authentication authentication) {
+    // Find
+    @PreAuthorize("hasAnyRole('ROLE_USER')")
+    @GetMapping("/books")
+    List<Book> findAll(Authentication authentication) {
 
 //     authentication.getPrincipal();
-    logger.info(authentication.getPrincipal().toString());
+        logger.info(authentication.getPrincipal().toString());
 
-    Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-    logger.info(principal.toString());
+        logger.info(principal.toString());
 
 
-    return repository.findAll();
-  }
-
-  // Save
-  @PostMapping("/books")
-  @ResponseStatus(HttpStatus.CREATED)
-  Book newBook(@Valid @RequestBody Book newBook) {
-
-    logger.info(newBook.toString());
-
-    List<Author> authors = newBook.getAuthors();
-    List<Author> authorList = new ArrayList<>();
-
-    for (Author author : authors) {
-      Author result = authorRepository.findByName(author.getName());
-      if (result != null) {
-        authorList.add(result);
-      } else {
-        authorList.add(author);
-      }
+        return repository.findAll();
     }
-    newBook.setAuthors(authorList);
-    return repository.save(newBook);
-  }
 
-  // Find
-  @GetMapping("/books/{id}")
-  Book findOne(@PathVariable @Min(1) Long id) {
-    return repository.findById(id)
-            .orElseThrow(() -> new BookNotFoundException(id));
-  }
+    // Save
+    @PostMapping("/books")
+    @ResponseStatus(HttpStatus.CREATED)
+    Book newBook(@Valid @RequestBody Book newBook) {
 
-  // Save or update
-  @PutMapping("/books/{id}")
-  Book saveOrUpdate(@RequestBody Book newBook, @PathVariable Long id) {
+        logger.info(newBook.toString());
 
-    return repository.findById(id)
-            .map(x -> {
-              x.setName(newBook.getName());
-              x.setAuthors(newBook.getAuthors());
-              x.setPrice(newBook.getPrice());
-              return repository.save(x);
-            })
-            .orElseGet(() -> {
-              newBook.setId(id);
-              return repository.save(newBook);
-            });
-  }
+        List<Author> authors = newBook.getAuthors();
+        List<Author> authorList = new ArrayList<>();
 
-  @MessageMapping("/hello")
-  @SendTo("/topic/greetings")
-  public Greeting greeting(HelloMessage message) throws Exception {
-    Thread.sleep(1000); // simulated delay
-    return new Greeting("Hello, " + HtmlUtils.htmlEscape(message.getName()) + "!");
-  }
+        for (Author author : authors) {
+            Author result = authorRepository.findByName(author.getName());
+            if (result != null) {
+                authorList.add(result);
+            } else {
+                authorList.add(author);
+            }
+        }
+        newBook.setAuthors(authorList);
+        return repository.save(newBook);
+    }
+
+    // Find
+    @GetMapping("/books/{id}")
+    Book findOne(@PathVariable @Min(1) Long id) {
+        return repository.findById(id)
+                .orElseThrow(() -> new BookNotFoundException(id));
+    }
+
+    // Save or update
+    @PutMapping("/books/{id}")
+    Book saveOrUpdate(@RequestBody Book newBook, @PathVariable Long id) {
+
+        return repository.findById(id)
+                .map(x -> {
+                    x.setName(newBook.getName());
+                    x.setAuthors(newBook.getAuthors());
+                    x.setPrice(newBook.getPrice());
+                    return repository.save(x);
+                })
+                .orElseGet(() -> {
+                    newBook.setId(id);
+                    return repository.save(newBook);
+                });
+    }
+
+    @MessageMapping("/hello")
+    @SendTo("/topic/greetings")
+    public Greeting greeting(HelloMessage message) throws Exception {
+        Thread.sleep(1000); // simulated delay
+        return new Greeting("Hello, " + HtmlUtils.htmlEscape(message.getName()) + "!");
+    }
 //
 //    // update author only
 //    @PatchMapping("/books/{id}")
@@ -134,9 +134,9 @@ public class BookController {
 //
 //    }
 
-  @DeleteMapping("/books/{id}")
-  void deleteBook(@PathVariable Long id) {
-    repository.deleteById(id);
-  }
+    @DeleteMapping("/books/{id}")
+    void deleteBook(@PathVariable Long id) {
+        repository.deleteById(id);
+    }
 
 }

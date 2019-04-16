@@ -2,7 +2,6 @@ package com.qingteng.demo.entity;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -15,7 +14,7 @@ import java.util.List;
 public class User {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private String username;
@@ -24,8 +23,8 @@ public class User {
     private String email;
     private Date lastPasswordResetDate;
 
-    @OneToMany(cascade = CascadeType.ALL,targetEntity=Role.class,
-            fetch=FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, targetEntity = Role.class,
+            fetch = FetchType.EAGER)
     private List<Role> roles;
 
 

@@ -10,51 +10,53 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 @SpringBootApplication
 @EnableConfigurationProperties(StorageProperties.class)
+@EnableJpaAuditing(auditorAwareRef = "auditorAware")
 public class DemoApplication {
-  private static final Logger logger = LoggerFactory.getLogger(DemoApplication.class);
+    private static final Logger logger = LoggerFactory.getLogger(DemoApplication.class);
 
 
-  public static void main(String[] args) {
-    SpringApplication.run(DemoApplication.class, args);
-  }
+    public static void main(String[] args) {
+        SpringApplication.run(DemoApplication.class, args);
+    }
 
-  @Bean
-  CommandLineRunner init(StorageService storageService) {
-    logger.info("init");
+    @Bean
+    CommandLineRunner init(StorageService storageService) {
+        logger.info("init");
 //        sshCommand();
-    return (args) -> {
-      storageService.deleteAll();
-      storageService.init();
-    };
-  }
+        return (args) -> {
+            storageService.deleteAll();
+            storageService.init();
+        };
+    }
 
-  private void sshCommand() {
-    String username = "root";
+    private void sshCommand() {
+        String username = "root";
 //        String password="wuyunan+";
 //        String hostname="115.159.149.28";
-    String password = "n2(MnF1zWcw-)*%f";
-    String hostname = "149.28.49.208";
+        String password = "n2(MnF1zWcw-)*%f";
+        String hostname = "149.28.49.208";
 
-    SSHManager instance = new SSHManager(username, password, hostname, "");
-    String errorMessage = instance.connect();
+        SSHManager instance = new SSHManager(username, password, hostname, "");
+        String errorMessage = instance.connect();
 
-    if (errorMessage != null) {
-      System.out.println(errorMessage);
-    }
+        if (errorMessage != null) {
+            System.out.println(errorMessage);
+        }
 //        String command = "docker run -d -p 443:8989 oddrationale/docker-shadowsocks -s 0.0.0.0 -p 8989 -k wuyunan+ -m aes-256-cfb";
-    String command = "ll";
+        String command = "ll";
 
-    // call sendCommand for each command and the output
-    //(without prompts) is returned
-    String result = instance.sendCommand(command);
-    // close only after all commands are sent
-    instance.close();
+        // call sendCommand for each command and the output
+        //(without prompts) is returned
+        String result = instance.sendCommand(command);
+        // close only after all commands are sent
+        instance.close();
 
-    System.out.println(result);
-  }
+        System.out.println(result);
+    }
 
 //  @Bean
 //  CommandLineRunner initDatabase(BookRepository repository) {
@@ -73,9 +75,9 @@ public class DemoApplication {
 //  }
 
 
-  static final String topicExchangeName = "spring-boot-exchange";
+    static final String topicExchangeName = "spring-boot-exchange";
 
-  static final String queueName = "spring-boot";
+    static final String queueName = "spring-boot";
 
 
 //    @Bean

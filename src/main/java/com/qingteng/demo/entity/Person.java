@@ -13,19 +13,17 @@ import javax.persistence.Id;
 @NoArgsConstructor
 public class Person {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private String firstName;
     private String lastName;
 
 
-
     public Person(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
     }
-
 
 
     @Override

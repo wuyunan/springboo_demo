@@ -19,37 +19,37 @@ import java.util.List;
 @ApiModel("书籍")
 @AllArgsConstructor
 @NoArgsConstructor
-public class Book {
+public class Book extends Auditable<JwtUser> {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-  @ApiModelProperty("书名")
-  @NotEmpty(message = "Please provide a name")
-  private String name;
+    @ApiModelProperty("书名")
+    @NotEmpty(message = "Please provide a name")
+    private String name;
 
-  @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-  @JoinTable(
-          name = "book_authors",
-          joinColumns = {@JoinColumn(name = "book_id", referencedColumnName = "id") },
-          inverseJoinColumns = {@JoinColumn(name = "author_id", referencedColumnName = "id") })
-  private List<Author> authors;
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "book_authors",
+            joinColumns = {@JoinColumn(name = "book_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "author_id", referencedColumnName = "id")})
+    private List<Author> authors;
 
-  @NotNull(message = "Please provide a price")
-  @DecimalMin("1.00")
-  private BigDecimal price;
+    @NotNull(message = "Please provide a price")
+    @DecimalMin("1.00")
+    private BigDecimal price;
 
-  // avoid this "No default constructor for entity"
+    // avoid this "No default constructor for entity"
 
 
-  @Override
-  public String toString() {
-    return "Book{" +
-            "id=" + id +
-            ", name='" + name + '\'' +
-            ", authors=" + authors +
-            ", price=" + price +
-            '}';
-  }
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", authors=" + authors +
+                ", price=" + price +
+                '}';
+    }
 }

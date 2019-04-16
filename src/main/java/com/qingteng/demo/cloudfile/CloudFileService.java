@@ -22,69 +22,70 @@ import java.util.HashMap;
 @Service
 public class CloudFileService {
 
-  private AmazonS3 s3client;
+    private AmazonS3 s3client;
 
-  @Value("${amazonProperties.endpointUrl}")
-  private String endpointUrl;
+    @Value("${amazonProperties.endpointUrl}")
+    private String endpointUrl;
 
-  @Value("${amazonProperties.bucketName}")
-  private String bucketName;
+    @Value("${amazonProperties.bucketName}")
+    private String bucketName;
 
-  @Value("${amazonProperties.accessKey}")
-  private String accessKey;
+    @Value("${amazonProperties.accessKey}")
+    private String accessKey;
 
-  @Value("${amazonProperties.secretKey}")
-  private String secretKey;
+    @Value("${amazonProperties.secretKey}")
+    private String secretKey;
 
-  @Value("${amazonProperties.region}")
-  private String region;
+    @Value("${amazonProperties.region}")
+    private String region;
 
-  @PostConstruct
-  private void initializeAmazon() {
-    BasicAWSCredentials credentials = new BasicAWSCredentials(this.accessKey, this.secretKey);
-    this.s3client = AmazonS3ClientBuilder
-            .standard()
-            .withRegion(this.region)
-            .withCredentials(new AWSStaticCredentialsProvider(credentials))
-            .build();
-  }
-
-  private File convertMultiPartToFile(MultipartFile file) throws IOException {
-    File convFile = new File(file.getOriginalFilename());
-    FileOutputStream fos = new FileOutputStream(convFile);
-    fos.write(file.getBytes());
-    fos.close();
-    return convFile;
-  }
-
-  private String generateFileName(MultipartFile multiPart) {
-    return System.currentTimeMillis() + "-" + multiPart.getOriginalFilename().replace(" ", "_");
-  }
-
-  private void uploadFileToS3Bucket(String fileName, File file) {
-    s3client
-            .putObject(new PutObjectRequest(bucketName, fileName, file).withCannedAcl(CannedAccessControlList.PublicRead));
-  }
-
-  /**
-   * 上传文件
-   * @param multipartFile
-   * @return
-   */
-  public HashMap<String, String> uploadFile(MultipartFile multipartFile) {
-    String fileUrl = "";
-    HashMap<String, String> res = new HashMap<String, String>();
-    try {
-      File file = convertMultiPartToFile(multipartFile);
-      String fileName = generateFileName(multipartFile);
-      fileUrl = endpointUrl + "/" + bucketName + "/" + fileName;
-//      fileUrl = "/" + bucketName + "/" + fileName;
-      uploadFileToS3Bucket(fileName, file);
-      file.delete();
-    } catch (Exception e) {
-      e.printStackTrace();
+    @PostConstruct
+    private void initializeAmazon() {
+        BasicAWSCredentials credentials = new BasicAWSCredentials(this.accessKey, this.secretKey);
+        this.s3client = AmazonS3ClientBuilder
+                .standard()
+                .withRegion(this.region)
+                .withCredentials(new AWSStaticCredentialsProvider(credentials))
+                .build();
     }
-    res.put("url", fileUrl);
-    return res;
-  }
+
+    private File convertMultiPartToFile(MultipartFile file) throws IOException {
+        File convFile = new File(file.getOriginalFilename());
+        FileOutputStream fos = new FileOutputStream(convFile);
+        fos.write(file.getBytes());
+        fos.close();
+        return convFile;
+    }
+
+    private String generateFileName(MultipartFile multiPart) {
+        return System.currentTimeMillis() + "-" + multiPart.getOriginalFilename().replace(" ", "_");
+    }
+
+    private void uploadFileToS3Bucket(String fileName, File file) {
+        s3client
+                .putObject(new PutObjectRequest(bucketName, fileName, file).withCannedAcl(CannedAccessControlList.PublicRead));
+    }
+
+    /**
+     * 上传文件
+     *
+     * @param multipartFile
+     * @return
+     */
+    public HashMap<String, String> uploadFile(MultipartFile multipartFile) {
+        String fileUrl = "";
+        HashMap<String, String> res = new HashMap<String, String>();
+        try {
+            File file = convertMultiPartToFile(multipartFile);
+            String fileName = generateFileName(multipartFile);
+            fileUrl = endpointUrl + "/" + bucketName + "/" + fileName;
+//      fileUrl = "/" + bucketName + "/" + fileName;
+            uploadFileToS3Bucket(fileName, file);
+            file.delete();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        res.put("url", fileUrl);
+        return res;
+    }
 }

@@ -28,7 +28,6 @@ public class JwtTokenUtil implements Serializable {
     private Long expiration;
 
     /**
-     *
      * @param token
      * @return
      */
@@ -44,7 +43,6 @@ public class JwtTokenUtil implements Serializable {
     }
 
     /**
-     *
      * @param token
      * @return
      */
@@ -60,7 +58,6 @@ public class JwtTokenUtil implements Serializable {
     }
 
     /**
-     *
      * @param token
      * @return
      */
@@ -76,7 +73,6 @@ public class JwtTokenUtil implements Serializable {
     }
 
     /**
-     *
      * @param token
      * @return
      */
@@ -94,7 +90,6 @@ public class JwtTokenUtil implements Serializable {
     }
 
     /**
-     *
      * @return
      */
     private Date generateExpirationDate() {
@@ -102,7 +97,6 @@ public class JwtTokenUtil implements Serializable {
     }
 
     /**
-     *
      * @param token
      * @return
      */
@@ -112,7 +106,6 @@ public class JwtTokenUtil implements Serializable {
     }
 
     /**
-     *
      * @param created
      * @param lastPasswordReset
      * @return
@@ -122,7 +115,6 @@ public class JwtTokenUtil implements Serializable {
     }
 
     /**
-     *
      * @param userDetails
      * @return
      */
@@ -134,7 +126,6 @@ public class JwtTokenUtil implements Serializable {
     }
 
     /**
-     *
      * @param claims
      * @return
      */
@@ -147,7 +138,6 @@ public class JwtTokenUtil implements Serializable {
     }
 
     /**
-     *
      * @param token
      * @param lastPasswordReset
      * @return
@@ -159,7 +149,6 @@ public class JwtTokenUtil implements Serializable {
     }
 
     /**
-     *
      * @param token
      * @return
      */
@@ -176,7 +165,6 @@ public class JwtTokenUtil implements Serializable {
     }
 
     /**
-     *
      * @param token
      * @param userDetails
      * @return

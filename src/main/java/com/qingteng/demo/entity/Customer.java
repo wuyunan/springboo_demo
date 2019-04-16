@@ -14,7 +14,7 @@ import javax.persistence.Id;
 @NoArgsConstructor
 public class Customer {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String probMac;
     private String devcMac;
@@ -31,7 +31,6 @@ public class Customer {
         this.outTime = outTime;
         this.rssi = rssi;
     }
-
 
 
     @Override

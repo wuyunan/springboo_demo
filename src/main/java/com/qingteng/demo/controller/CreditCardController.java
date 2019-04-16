@@ -1,13 +1,11 @@
 package com.qingteng.demo.controller;
 
 
-import com.qingteng.demo.entity.Book;
 import com.qingteng.demo.entity.CreditCard;
 import com.qingteng.demo.error.BookNotFoundException;
 import com.qingteng.demo.respository.CreditCardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -22,12 +20,10 @@ public class CreditCardController {
     private CreditCardRepository repository;
 
 
-
     public CreditCardController() {
     }
 
     /**
-     *
      * @return
      */
     @GetMapping("/creditcards")
@@ -46,7 +42,7 @@ public class CreditCardController {
 
     // Find
     @GetMapping("/creditcards/{id}")
-    CreditCard findOne( @Valid @PathVariable @Min(1)  Long id) {
+    CreditCard findOne(@Valid @PathVariable @Min(1) Long id) {
         return repository.findById(id)
                 .orElseThrow(() -> new BookNotFoundException(id));
     }

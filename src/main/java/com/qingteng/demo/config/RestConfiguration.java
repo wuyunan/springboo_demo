@@ -1,6 +1,5 @@
 package com.qingteng.demo.config;
 
-import com.qingteng.demo.projection.CustomBook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
@@ -11,18 +10,18 @@ import javax.persistence.metamodel.Type;
 
 @Configuration
 public class RestConfiguration extends RepositoryRestConfigurerAdapter {
-  @Autowired
-  private EntityManager entityManager;
+    @Autowired
+    private EntityManager entityManager;
 
-  @Override
-  public void configureRepositoryRestConfiguration(
-          RepositoryRestConfiguration configuration) {
+    @Override
+    public void configureRepositoryRestConfiguration(
+            RepositoryRestConfiguration configuration) {
 
-    configuration.exposeIdsFor(
-            entityManager.getMetamodel().getEntities().stream()
-                    .map(Type::getJavaType)
-                    .toArray(Class[]::new));
+        configuration.exposeIdsFor(
+                entityManager.getMetamodel().getEntities().stream()
+                        .map(Type::getJavaType)
+                        .toArray(Class[]::new));
 //        configuration.getProjectionConfiguration()
 //          .addProjection(CustomBook.class);
-  }
+    }
 }

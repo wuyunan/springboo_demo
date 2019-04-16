@@ -10,6 +10,7 @@ public interface AbstractBasicRepository<T> {
 
     /**
      * 定义参数查询
+     *
      * @param params
      * @return
      */
@@ -17,6 +18,7 @@ public interface AbstractBasicRepository<T> {
 
     /**
      * 定义参数查询
+     *
      * @param params
      * @return
      */
@@ -24,6 +26,7 @@ public interface AbstractBasicRepository<T> {
 
     /**
      * 定义参数分页查询
+     *
      * @param params
      * @return
      */

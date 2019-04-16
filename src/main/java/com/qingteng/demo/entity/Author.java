@@ -14,15 +14,15 @@ import java.util.List;
 @NoArgsConstructor
 public class Author {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
 
-  @Column(nullable = false)
-  private String name;
+    @Column(nullable = false)
+    private String name;
 
-  @JsonIgnore
-  @ManyToMany(mappedBy = "authors",
-          fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-  private List<Book> books;
+    @JsonIgnore
+    @ManyToMany(mappedBy = "authors",
+            fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<Book> books;
 }

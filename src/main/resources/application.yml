@@ -5,13 +5,13 @@ jwt:
     tokenExpiredMs: 604800000
     tokenSecret: qingteng
 
-logging:
-    level:
-        org:
-            hibernate: INFO
-            hibernate.SQL: debug
-            springframework: 'OFF'
-            springframework.web: ERROR
+#logging:
+#    level:
+#        org:
+#            hibernate: INFO
+#            hibernate.SQL: debug
+#            springframework: 'OFF'
+#            springframework.web: ERROR
 spring:
     datasource:
         driver-class-name: com.mysql.cj.jdbc.Driver

@@ -101,7 +101,6 @@ public class SSHManager {
     }
 
     /**
-     *
      * @param command
      * @return
      */

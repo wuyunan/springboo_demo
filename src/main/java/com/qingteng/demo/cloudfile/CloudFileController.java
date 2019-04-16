@@ -18,15 +18,15 @@ import java.util.HashMap;
 @RequestMapping("/cloudFiles/")
 public class CloudFileController {
 
-  private CloudFileService cloudFileService;
+    private CloudFileService cloudFileService;
 
-  @Autowired
-  CloudFileController(CloudFileService cloudFileService) {
-    this.cloudFileService = cloudFileService;
-  }
+    @Autowired
+    CloudFileController(CloudFileService cloudFileService) {
+        this.cloudFileService = cloudFileService;
+    }
 
-  @PostMapping("/upload")
-  public HashMap<String, String> uploadFile(@RequestPart(value = "file") MultipartFile file) {
-    return this.cloudFileService.uploadFile(file);
-  }
+    @PostMapping("/upload")
+    public HashMap<String, String> uploadFile(@RequestPart(value = "file") MultipartFile file) {
+        return this.cloudFileService.uploadFile(file);
+    }
 }

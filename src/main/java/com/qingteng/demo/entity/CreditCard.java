@@ -16,7 +16,7 @@ import java.io.Serializable;
 public class CreditCard implements Serializable {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     /**
      * 名称
@@ -67,8 +67,6 @@ public class CreditCard implements Serializable {
      * 后四位
      */
     private String lastFour;
-
-
 
 
 }

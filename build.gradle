@@ -25,7 +25,6 @@ buildscript {
 }
 
 apply plugin: 'java'
-apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
@@ -69,11 +68,11 @@ dependencies {
 //    compile("org.springframework.boot:spring-boot-starter-log4j2")
 
     // Use MySQL Connector-J
-    compile 'mysql:mysql-connector-java'
+    compile('mysql:mysql-connector-java')
+
     compile 'com.aliyun:aliyun-java-sdk-core:4.0.2'
     compile 'com.yunpian.sdk:yunpian-java-sdk:1.2.7'
     compile 'com.alibaba:fastjson:1.2.15'
-    compile 'de.pentabyte:springfox-enum-plugin:1.1.1'
     compile("io.jsonwebtoken:jjwt:${jjwtVersion}")
     compile("com.querydsl:querydsl-core:${queryDslVersion}")
     compile("com.querydsl:querydsl-jpa:${queryDslVersion}")
@@ -86,7 +85,7 @@ dependencies {
     compile("io.springfox:springfox-swagger-ui:${swaggerVersion}")
     compile("io.springfox:springfox-bean-validators:${swaggerVersion}")
     compile("io.springfox:springfox-data-rest:${swaggerVersion}")
-    compile("de.pentabyte:springfox-enum-plugin:1.1.1")
+    compile 'de.pentabyte:springfox-enum-plugin:1.1.1'
 
 //
 //    compile("org.activiti:activiti-spring-boot-starter-basic:${activitiVersion}")

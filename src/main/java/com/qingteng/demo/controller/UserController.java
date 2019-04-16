@@ -23,7 +23,6 @@ public class UserController {
     private UserRepository repository;
 
 
-
     @PreAuthorize("hasRole('ADMIN')")
     @RequestMapping(method = RequestMethod.GET)
     public List<User> getUsers() {
@@ -53,12 +52,12 @@ public class UserController {
     @PreAuthorize("hasRole('ADMIN')")
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     void removeUser(@PathVariable Long id) {
-         repository.deleteById(id);
+        repository.deleteById(id);
     }
 
     @PostAuthorize("returnObject.username == principal.username or hasRole('ROLE_ADMIN')")
-    @RequestMapping(value = "/",method = RequestMethod.GET)
-    public User getUserByUsername(@RequestParam(value="username") String username) {
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public User getUserByUsername(@RequestParam(value = "username") String username) {
         return repository.findByUsername(username);
     }
 

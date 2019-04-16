@@ -1,3 +1,4 @@
+HELP.md
 .gradle
 /build/
 !gradle/wrapper/gradle-wrapper.jar
@@ -24,7 +25,6 @@
 /dist/
 /nbdist/
 /.nb-gradle/
-.DS_Store
 
-bin
-.vscode
+### VS Code ###
+.vscode/

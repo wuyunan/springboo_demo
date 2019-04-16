@@ -21,9 +21,9 @@ import java.util.List;
 @Validated
 public class AuthorController {
 
-  private static final Logger logger = LoggerFactory.getLogger(AuthorController.class);
+    private static final Logger logger = LoggerFactory.getLogger(AuthorController.class);
 
-  @Autowired
+    @Autowired
     private AuthorRepository repository;
 
     // Find
@@ -32,14 +32,14 @@ public class AuthorController {
     List<Author> findAll(Authentication authentication) {
 
 //     authentication.getPrincipal();
-      logger.info(authentication.getPrincipal().toString());
+        logger.info(authentication.getPrincipal().toString());
 
-      Object principal =  SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-      logger.info(principal.toString());
+        logger.info(principal.toString());
 
 
-      return repository.findAll();
+        return repository.findAll();
     }
 
 

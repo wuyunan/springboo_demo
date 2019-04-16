@@ -1,13 +1,13 @@
 package com.qingteng.demo.service;
 
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.util.Properties;
-
 import com.jcraft.jsch.ChannelExec;
 import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.Session;
+
+import java.io.ByteArrayOutputStream;
+import java.util.Properties;
+
 /**
  * @ClassName: RemoteExecuteCommand
  * @Description: 远程执行Linux命令

@@ -17,21 +17,21 @@ import java.util.Map;
 @Service
 public class YunpianSMSServiceService {
 
-	@Value("${sms.sign-name}")
-	String signName;
+    @Value("${sms.sign-name}")
+    String signName;
 
-	public YunpianSMSServiceService() {
-	}
+    public YunpianSMSServiceService() {
+    }
 
-	public void sendSMS(String mobile, String code) throws Exception {
-		YunpianClient client = new YunpianClient(System.getenv("YUNPIAN_API_KEY")).init();
-		Map<String, String> param = client.newParam(2);
-		param.put(YunpianClient.MOBILE, mobile);
-		param.put(YunpianClient.TEXT, "【" + signName + "】您的验证码是" + code);
-		Result<SmsSingleSend> result = client.sms().single_send(param);
-		if (result.getCode() != 0) {
-			throw new Exception(result.getDetail());
-		}
-		client.close();
-	}
+    public void sendSMS(String mobile, String code) throws Exception {
+        YunpianClient client = new YunpianClient(System.getenv("YUNPIAN_API_KEY")).init();
+        Map<String, String> param = client.newParam(2);
+        param.put(YunpianClient.MOBILE, mobile);
+        param.put(YunpianClient.TEXT, "【" + signName + "】您的验证码是" + code);
+        Result<SmsSingleSend> result = client.sms().single_send(param);
+        if (result.getCode() != 0) {
+            throw new Exception(result.getDetail());
+        }
+        client.close();
+    }
 }

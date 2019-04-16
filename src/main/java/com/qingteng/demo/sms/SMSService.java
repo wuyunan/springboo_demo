@@ -17,58 +17,58 @@ import java.util.Calendar;
  */
 @Service
 public class SMSService {
-  @Autowired
-  private AliSMSService aliSmsService;
+    @Autowired
+    private AliSMSService aliSmsService;
 
-  @Autowired
-  private YunpianSMSServiceService yunpianSmsService;
+    @Autowired
+    private YunpianSMSServiceService yunpianSmsService;
 
-  @Value("${sms.enabled:false}")
-  private boolean enabled;
+    @Value("${sms.enabled:false}")
+    private boolean enabled;
 
-  @Value("${sms.validate.max:10}")
-  private Long validateMaxTimes;
+    @Value("${sms.validate.max:10}")
+    private Long validateMaxTimes;
 
-  private StringRedisTemplate stringRedisTemplate;
+    private StringRedisTemplate stringRedisTemplate;
 
-  public SMSService(StringRedisTemplate stringRedisTemplate) {
-    this.stringRedisTemplate = stringRedisTemplate;
-  }
-
-  public void sendSMS(String mobile, String code) throws Exception {
-    checkBeforeSend(mobile);
-
-    if (!enabled) {
-      return;
+    public SMSService(StringRedisTemplate stringRedisTemplate) {
+        this.stringRedisTemplate = stringRedisTemplate;
     }
 
-    try {
-      aliSmsService.sendSMS(mobile, code);
-    } catch (Exception e) {
-      e.printStackTrace();
-      yunpianSmsService.sendSMS(mobile, code);
-    }
-  }
+    public void sendSMS(String mobile, String code) throws Exception {
+        checkBeforeSend(mobile);
 
-  public void checkBeforeSend(String key) throws Exception {
-    String timesKey = "TIMES:" + CacheType.VALIDATECODE + ":" + key;
-    if (stringRedisTemplate.hasKey(timesKey)
-            && Integer.parseInt(stringRedisTemplate.opsForValue().get(timesKey)) >= validateMaxTimes) {
-      throw new TooManyException("Too many request!");
-    } else {
-      Integer times;
-      Calendar calendar = Calendar.getInstance();
-      calendar.set(Calendar.HOUR, 23);
-      calendar.set(Calendar.MINUTE, 59);
-      calendar.set(Calendar.SECOND, 59);
-      calendar.set(Calendar.MILLISECOND, 999);
-      if (!stringRedisTemplate.hasKey(timesKey)) {
-        times = 1;
-      } else {
-        times = Integer.parseInt(stringRedisTemplate.opsForValue().get(timesKey));
-      }
-      stringRedisTemplate.opsForValue().getAndSet(timesKey, String.valueOf(times + 1));
-      stringRedisTemplate.expireAt(timesKey, calendar.getTime());
+        if (!enabled) {
+            return;
+        }
+
+        try {
+            aliSmsService.sendSMS(mobile, code);
+        } catch (Exception e) {
+            e.printStackTrace();
+            yunpianSmsService.sendSMS(mobile, code);
+        }
     }
-  }
+
+    public void checkBeforeSend(String key) throws Exception {
+        String timesKey = "TIMES:" + CacheType.VALIDATECODE + ":" + key;
+        if (stringRedisTemplate.hasKey(timesKey)
+                && Integer.parseInt(stringRedisTemplate.opsForValue().get(timesKey)) >= validateMaxTimes) {
+            throw new TooManyException("Too many request!");
+        } else {
+            Integer times;
+            Calendar calendar = Calendar.getInstance();
+            calendar.set(Calendar.HOUR, 23);
+            calendar.set(Calendar.MINUTE, 59);
+            calendar.set(Calendar.SECOND, 59);
+            calendar.set(Calendar.MILLISECOND, 999);
+            if (!stringRedisTemplate.hasKey(timesKey)) {
+                times = 1;
+            } else {
+                times = Integer.parseInt(stringRedisTemplate.opsForValue().get(timesKey));
+            }
+            stringRedisTemplate.opsForValue().getAndSet(timesKey, String.valueOf(times + 1));
+            stringRedisTemplate.expireAt(timesKey, calendar.getTime());
+        }
+    }
 }

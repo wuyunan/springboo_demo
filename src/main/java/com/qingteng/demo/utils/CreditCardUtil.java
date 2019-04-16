@@ -6,9 +6,10 @@ public interface CreditCardUtil {
 
     /**
      * 获取免息天数
-     * @param date 日期
+     *
+     * @param date          日期
      * @param statementDate 结算日
-     * @param dueDate 还款日
+     * @param dueDate       还款日
      * @return
      */
     static long getInterestholiday(LocalDate date, int statementDate, int dueDate) {
@@ -24,12 +25,13 @@ public interface CreditCardUtil {
 
     /**
      * 获取还款日时间
+     *
      * @param date
      * @param statementDate
      * @param dueDate
      * @return
      */
-     static LocalDate getDueDate(LocalDate date, int statementDate, int dueDate) {
+    static LocalDate getDueDate(LocalDate date, int statementDate, int dueDate) {
         LocalDate dueLocalDate;
 
         dueLocalDate = date.plusMonths(date.getDayOfMonth() <= statementDate ? 1 : 2).withDayOfMonth(dueDate);
