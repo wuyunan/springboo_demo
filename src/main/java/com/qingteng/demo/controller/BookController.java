@@ -12,6 +12,7 @@ import io.swagger.annotations.Api;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.annotation.Reference;
 import org.springframework.http.HttpStatus;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
@@ -27,6 +28,8 @@ import javax.validation.constraints.Min;
 import java.util.ArrayList;
 import java.util.List;
 
+//import com.qingteng.msg.service.IHelloService;
+
 @Api(value = "书籍", description = "书籍")
 @RestController
 @Validated
@@ -39,6 +42,9 @@ public class BookController {
 
     @Autowired
     private AuthorRepository authorRepository;
+
+//    @Reference
+//    private IHelloService helloService;
 
     // Find
     @PreAuthorize("hasAnyRole('ROLE_USER')")
