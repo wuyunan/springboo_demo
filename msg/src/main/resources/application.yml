@@ -1,17 +1,20 @@
 spring:
     application:
-        name: dubbo-spring-boot-starter
+        name: qingteng-msg
     dubbo:
         application:
-            name: demo-provider
+            name: qingteng-msg
         base-package: com.qingteng.msg.service      # dubbo服务发布者所在的包
         registry:
-            address: 192.168.1.170              # zookeeper注册中心的地址
+            protocol: zookeeper
+            address: 115.159.149.28              # zookeeper注册中心的地址
             port: 2181                           # zookeeper注册中心的端口
+#            address: zookeeper://127.0.0.1:2181
         protocol:
             name: dubbo
-            serialization: hessian2
+            port: 20880
         provider:
             timeout: 10000 # 配置全局调用服务超时时间，dubbo默认是1s，肯定不够用呀
             retries: 3 # 重试3次
             delay: -1
+        server: true
