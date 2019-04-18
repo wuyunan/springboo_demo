@@ -1,6 +1,7 @@
 package com.qingteng.demo.controller;
 
 
+import com.alibaba.dubbo.config.annotation.Reference;
 import com.qingteng.demo.entity.Author;
 import com.qingteng.demo.entity.Book;
 import com.qingteng.demo.entity.Greeting;
@@ -12,7 +13,6 @@ import io.swagger.annotations.Api;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.annotation.Reference;
 import org.springframework.http.HttpStatus;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
@@ -44,7 +44,7 @@ public class BookController {
     private AuthorRepository authorRepository;
 
     @Reference
-    private IHelloService helloService;
+    IHelloService helloService;
 
     // Find
     @PreAuthorize("hasAnyRole('ROLE_USER')")
@@ -93,7 +93,7 @@ public class BookController {
 
 
     // Find
-    @GetMapping("/books/hello")
+    @GetMapping("/bookshello")
     String hello() {
         return helloService.hello("ssssww");
     }

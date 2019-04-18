@@ -1,5 +1,6 @@
 package com.qingteng.demo;
 
+import com.alibaba.dubbo.spring.boot.annotation.EnableDubboConfiguration;
 import com.qingteng.demo.service.SSHManager;
 import com.qingteng.demo.storage.StorageProperties;
 import com.qingteng.demo.storage.StorageService;
@@ -15,6 +16,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 @SpringBootApplication
 @EnableConfigurationProperties(StorageProperties.class)
 @EnableJpaAuditing(auditorAwareRef = "auditorAware")
+@EnableDubboConfiguration
 public class DemoApplication {
     private static final Logger logger = LoggerFactory.getLogger(DemoApplication.class);
 
