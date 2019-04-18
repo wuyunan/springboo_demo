@@ -1,6 +1,6 @@
-package com.qingteng.msg.service;
+package com.qingteng.api;
 
-public interface IBookService {
+public interface ISmsService {
 
     /**
      * 定义一个发短信的接口

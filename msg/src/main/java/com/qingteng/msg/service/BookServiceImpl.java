@@ -1,6 +1,7 @@
 package com.qingteng.msg.service;
 
 import com.alibaba.dubbo.config.annotation.Service;
+import com.qingteng.api.IBookService;
 import org.springframework.stereotype.Component;
 
 @Service(interfaceClass = IBookService.class)

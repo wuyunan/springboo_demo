@@ -1,6 +1,7 @@
 package com.qingteng.msg.service;
 
 import com.alibaba.dubbo.config.annotation.Service;
+import com.qingteng.api.ISmsService;
 import org.springframework.stereotype.Component;
 
 @Service(interfaceClass = ISmsService.class)

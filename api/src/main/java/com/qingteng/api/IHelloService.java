@@ -1,4 +1,4 @@
-package com.qingteng.msg.service;
+package com.qingteng.api;
 
 public interface IHelloService {
     String hello(String param);

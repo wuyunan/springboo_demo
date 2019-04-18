@@ -46,7 +46,7 @@ spring:
     dubbo:
         application:
             name: demo-consumer
-        base-package: com.qingteng.msg.service  # dubbo服务调用者所在的包
+        base-package: com.qingteng.api  # dubbo服务调用者所在的包
         registry:
             protocol: zookeeper
             address: 115.159.149.28                  # zookeeper注册中心的地址

@@ -28,7 +28,7 @@ import javax.validation.constraints.Min;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.qingteng.msg.service.IHelloService;
+import com.qingteng.api.IHelloService;
 
 @Api(value = "书籍", description = "书籍")
 @RestController
