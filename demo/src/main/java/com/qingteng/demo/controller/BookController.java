@@ -28,7 +28,7 @@ import javax.validation.constraints.Min;
 import java.util.ArrayList;
 import java.util.List;
 
-//import com.qingteng.msg.service.IHelloService;
+import com.qingteng.msg.service.IHelloService;
 
 @Api(value = "书籍", description = "书籍")
 @RestController
@@ -43,8 +43,8 @@ public class BookController {
     @Autowired
     private AuthorRepository authorRepository;
 
-//    @Reference
-//    private IHelloService helloService;
+    @Reference
+    private IHelloService helloService;
 
     // Find
     @PreAuthorize("hasAnyRole('ROLE_USER')")
@@ -89,6 +89,13 @@ public class BookController {
     Book findOne(@PathVariable @Min(1) Long id) {
         return repository.findById(id)
                 .orElseThrow(() -> new BookNotFoundException(id));
+    }
+
+
+    // Find
+    @GetMapping("/books/hello")
+    String hello() {
+        return helloService.hello("ssssww");
     }
 
     // Save or update

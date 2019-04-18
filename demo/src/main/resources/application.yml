@@ -48,17 +48,20 @@ spring:
             name: demo-consumer
         base-package: com.qingteng.msg.service  # dubbo服务调用者所在的包
         registry:
-            address: 192.168.1.170                  # zookeeper注册中心的地址
+            protocol: zookeeper
+            address: 115.159.149.28                  # zookeeper注册中心的地址
             port: 2181                           # zookeeper注册中心的端口
+
+        protocol:
+            name: dubbo
+            port: 20880
         consumer:
             timeout: 1000
             check: true                          # 服务启动时检查被调用服务是否可用
-            retries: 2                           # 服务调用重试次数
+            retries: 3                           # 服务调用重试次数
 swagger:
     enable: true
 
-server:
-    port: 80
 
 
 # s3 test \u8D26\u53F7
