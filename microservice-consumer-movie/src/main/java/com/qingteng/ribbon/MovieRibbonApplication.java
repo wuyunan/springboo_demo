@@ -1,4 +1,4 @@
-package com.qingteng.feign;
+package com.qingteng.ribbon;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
