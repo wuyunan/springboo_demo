@@ -1,7 +1,7 @@
 package com.qingteng.demo.handler;
 
-import com.qingteng.demo.error.BookNotFoundException;
-import com.qingteng.demo.error.BookUnSupportedFieldPatchException;
+import com.qingteng.common.error.NotFoundException;
+import com.qingteng.common.error.BookUnSupportedFieldPatchException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,22 +23,12 @@ import java.util.stream.Collectors;
 @ControllerAdvice
 public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler {
     // Let Spring BasicErrorController handle the exception, we just override the status code
-    @ExceptionHandler(BookNotFoundException.class)
+    @ExceptionHandler(NotFoundException.class)
     public void springHandleNotFound(HttpServletResponse response) throws IOException {
         response.sendError(HttpStatus.NOT_FOUND.value());
     }
 
-//    @ExceptionHandler(BookNotFoundException.class)
-//    public ResponseEntity<CustomErrorResponse> customHandleNotFound(Exception ex, WebRequest request) {
-//
-//        CustomErrorResponse errors = new CustomErrorResponse();
-//        errors.setTimestamp(LocalDateTime.now());
-//        errors.setError(ex.getMessage());
-//        errors.setStatus(HttpStatus.NOT_FOUND.value());
-//
-//        return new ResponseEntity<>(errors, HttpStatus.NOT_FOUND);
-//
-//    }
+
 
     @ExceptionHandler(BookUnSupportedFieldPatchException.class)
     public void springUnSupportedFieldPatch(HttpServletResponse response) throws IOException {

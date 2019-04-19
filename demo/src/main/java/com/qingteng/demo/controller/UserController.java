@@ -1,7 +1,7 @@
 package com.qingteng.demo.controller;
 
+import com.qingteng.common.error.NotFoundException;
 import com.qingteng.demo.entity.User;
-import com.qingteng.demo.error.BookNotFoundException;
 import com.qingteng.demo.respository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PostAuthorize;
@@ -39,7 +39,7 @@ public class UserController {
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public User getUser(@PathVariable Long id) {
         return repository.findById(id)
-                .orElseThrow(() -> new BookNotFoundException(id));
+                .orElseThrow(() -> new NotFoundException(id));
     }
 
     @PreAuthorize("hasRole('ADMIN')")

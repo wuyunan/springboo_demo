@@ -6,7 +6,7 @@ import com.qingteng.demo.entity.Author;
 import com.qingteng.demo.entity.Book;
 import com.qingteng.demo.entity.Greeting;
 import com.qingteng.demo.entity.HelloMessage;
-import com.qingteng.demo.error.BookNotFoundException;
+import com.qingteng.common.error.NotFoundException;
 import com.qingteng.demo.respository.AuthorRepository;
 import com.qingteng.demo.respository.BookRepository;
 import io.swagger.annotations.Api;
@@ -88,7 +88,7 @@ public class BookController {
     @GetMapping("/books/{id}")
     Book findOne(@PathVariable @Min(1) Long id) {
         return repository.findById(id)
-                .orElseThrow(() -> new BookNotFoundException(id));
+                .orElseThrow(() -> new NotFoundException(id));
     }
 
 
@@ -142,7 +142,7 @@ public class BookController {
 //
 //                })
 //                .orElseGet(() -> {
-//                    throw new BookNotFoundException(id);
+//                    throw new NotFoundException(id);
 //                });
 //
 //    }

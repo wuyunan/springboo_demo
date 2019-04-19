@@ -1,7 +1,7 @@
 package com.qingteng.demo.sms;
 
 import com.qingteng.demo.cache.CacheType;
-import com.qingteng.demo.error.TooManyException;
+import com.qingteng.common.error.TooManyException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.StringRedisTemplate;
