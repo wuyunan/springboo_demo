@@ -1,4 +1,4 @@
-package com.qingteng.demo.error;
+package com.qingteng.common.error;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
