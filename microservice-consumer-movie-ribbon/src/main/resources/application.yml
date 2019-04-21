@@ -13,4 +13,4 @@ eureka:
 
 
 user:
-    userServiceUrl: http://localhost:8000/users/
+    userServiceUrl: http://microservice-provider-user/users/
