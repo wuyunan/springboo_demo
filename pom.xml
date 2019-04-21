@@ -10,13 +10,14 @@
     <description>Demo project for Spring Boot</description>
     <packaging>pom</packaging>
     <modules>
+        <module>api</module>
+        <module>common</module>
         <module>demo</module>
         <module>msg</module>
-        <module>api</module>
+        <module>feign</module>
         <module>microservice-discovery-eureka</module>
         <module>microservice-provider-user</module>
-        <module>common</module>
-        <module>microservice-consumer-movie</module>
+        <module>microservice-consumer-movie-robbon</module>
         <module>microservice-consumer-movie-feign</module>
         <module>microservice-simple-consumer-movie</module>
     </modules>

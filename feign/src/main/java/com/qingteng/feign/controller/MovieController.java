@@ -1,7 +1,8 @@
-package com.qingteng.ribbon.controller;
+package com.qingteng.feign.controller;
 
-import com.qingteng.ribbon.bean.User;
-import com.qingteng.ribbon.service.RibbonService;
+import com.qingteng.feign.FeignApplication;
+import com.qingteng.feign.bean.User;
+import com.qingteng.feign.service.UserFeignClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,13 +17,14 @@ public class MovieController {
     private static final Logger LOGGER = LoggerFactory.getLogger(MovieController.class);
 
     @Autowired
-    private RibbonService ribbonService;
+    private UserFeignClient userFeignClient;
+
     @Autowired
     private LoadBalancerClient loadBalancerClient;
 
     @GetMapping("/user/{id}")
     public User findById(@PathVariable Long id) {
-        return this.ribbonService.findById(id);
+        return this.userFeignClient.findById(id);
     }
 
     @GetMapping("/log-user-instance")

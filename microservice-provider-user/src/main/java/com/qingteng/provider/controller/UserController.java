@@ -4,6 +4,8 @@ import com.qingteng.common.error.NotFoundException;
 import com.qingteng.provider.bean.User;
 import com.qingteng.provider.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,6 +16,9 @@ import java.util.List;
 
 @RestController
 public class UserController {
+
+    @Value("${spring.application.name}")
+   private String serviceId;
     @Autowired
     private DiscoveryClient discoveryClient;
 
@@ -38,8 +43,8 @@ public class UserController {
      * @return
      */
     @GetMapping("/instance-info")
-    public List<String> showInfo() {
-        List<String> localServiceInstance = this.discoveryClient.getServices();
+    public List<ServiceInstance> showInfo() {
+        List<ServiceInstance> localServiceInstance = this.discoveryClient.getInstances(this.serviceId);
         return localServiceInstance;
     }
 }
