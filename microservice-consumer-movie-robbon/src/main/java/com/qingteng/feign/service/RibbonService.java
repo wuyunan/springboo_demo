@@ -1,6 +1,6 @@
-package com.qingteng.ribbon.service;
+package com.qingteng.feign.service;
 
-import com.qingteng.ribbon.bean.User;
+import com.qingteng.feign.bean.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;

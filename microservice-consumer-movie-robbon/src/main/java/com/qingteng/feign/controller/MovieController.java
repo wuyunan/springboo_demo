@@ -1,7 +1,7 @@
-package com.qingteng.ribbon.controller;
+package com.qingteng.feign.controller;
 
-import com.qingteng.ribbon.bean.User;
-import com.qingteng.ribbon.service.RibbonService;
+import com.qingteng.feign.bean.User;
+import com.qingteng.feign.service.RibbonService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

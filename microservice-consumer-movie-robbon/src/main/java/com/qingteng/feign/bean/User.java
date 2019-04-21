@@ -1,4 +1,4 @@
-package com.qingteng.ribbon.bean;
+package com.qingteng.feign.bean;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
