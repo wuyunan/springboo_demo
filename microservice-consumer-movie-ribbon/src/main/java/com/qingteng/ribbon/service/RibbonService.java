@@ -13,6 +13,7 @@ public class RibbonService {
 
   @Value("${user.userServiceUrl}")
   private String userServiceUrl;
+
   public User findById(Long id) {
     // http://服务提供者的serviceId/url
     return this.restTemplate.getForObject(this.userServiceUrl + id, User.class);
