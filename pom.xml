@@ -14,11 +14,11 @@
         <module>common</module>
         <module>demo</module>
         <module>msg</module>
+        <module>microservice-consumer-movie-feign</module>
         <module>microservice-discovery-eureka</module>
         <module>microservice-provider-user</module>
-        <module>microservice-consumer-movie-feign</module>
-        <module>microservice-consumer-movie-ribbon-with-hystrix</module>
         <module>microservice-simple-consumer-movie</module>
+        <module>microservice-consumer-movie-ribbon-with-hystrix</module>
     </modules>
     <build>
         <plugins>
