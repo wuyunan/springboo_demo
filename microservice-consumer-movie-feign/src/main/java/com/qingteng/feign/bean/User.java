@@ -1,15 +1,20 @@
-package com.qingteng.ribbon.bean;
+package com.qingteng.feign.bean;
+
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 public class User {
+
     private Long id;
     private String username;
+    private String name;
     private Integer age;
-
+    private BigDecimal balance;
 }
