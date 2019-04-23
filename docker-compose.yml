@@ -1,0 +1,25 @@
+version: "3"
+
+services:
+    microservice-discovery-eureka:
+        hostname: peer1
+        image: wuyunan/microservice-discovery-eureka
+        container_name: microservice-discovery-eureka
+        ports:
+            - "8761:8761"
+        environment:
+            - spring.profiles.active=peer1
+        networks:
+            - csnet
+    microservice-discovery-eureka2:
+        hostname: peer2
+        image: wuyunan/microservice-discovery-eureka
+        container_name: microservice-discovery-eureka2
+        ports:
+            - "8762:8762"
+        environment:
+            - spring.profiles.active=peer2
+        networks:
+            - csnet
+networks:
+    csnet:
