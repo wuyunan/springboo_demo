@@ -6,10 +6,10 @@ import org.springframework.cloud.netflix.turbine.EnableTurbine;
 
 @SpringBootApplication
 @EnableTurbine
-public class MicroserviceHystrixTurbineApplication {
+public class TurbineApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(MicroserviceHystrixTurbineApplication.class, args);
+        SpringApplication.run(TurbineApplication.class, args);
     }
 
 }

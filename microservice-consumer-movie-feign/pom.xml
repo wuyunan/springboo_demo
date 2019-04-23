@@ -75,19 +75,10 @@
             <plugin>
                 <groupId>com.spotify</groupId>
                 <artifactId>dockerfile-maven-plugin</artifactId>
-                <version>1.2.0</version>
-                <!--                <configuration>-->
-                <!--                    <imageName>microservice-feign</imageName>-->
-                <!--                    <repository>myorg/${project.artifactId}</repository>-->
-                <!--                    <dockerDirectory>${project.basedir}</dockerDirectory>-->
-                <!--                    <resources>-->
-                <!--                        <resource>-->
-                <!--                            <targetPath>/</targetPath>-->
-                <!--                            <directory>${project.build.directory}</directory>-->
-                <!--                            <include>${project.build.finalName}.jar</include>-->
-                <!--                        </resource>-->
-                <!--                    </resources>-->
-                <!--                </configuration>-->
+                <version>1.4.8</version>
+                <configuration>
+                    <repository>wuyunan/${project.artifactId}</repository>
+                </configuration>
             </plugin>
         </plugins>
     </build>

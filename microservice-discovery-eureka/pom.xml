@@ -65,7 +65,7 @@
 				<artifactId>dockerfile-maven-plugin</artifactId>
 				<version>1.4.8</version>
 				<configuration>
-					<repository>${project.artifactId}</repository>
+					<repository>wuyunan/${project.artifactId}</repository>
 				</configuration>
 			</plugin>
 		</plugins>
