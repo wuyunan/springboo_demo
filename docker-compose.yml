@@ -11,6 +11,7 @@ services:
             - spring.profiles.active=peer1
         networks:
             - csnet
+
     microservice-discovery-eureka2:
         hostname: peer2
         image: wuyunan/microservice-discovery-eureka
@@ -28,6 +29,15 @@ services:
         container_name: microservice-gateway-zuul
         ports:
             - "8051:8051"
+        networks:
+            - csnet
+
+    microservice-consumer-movie-feign:
+        hostname: feign
+        image:  wuyunan/microservice-consumer-movie-feign
+        container_name: microservice-consumer-movie-feign
+        ports:
+            - "8022:8022"
         networks:
             - csnet
 networks:
