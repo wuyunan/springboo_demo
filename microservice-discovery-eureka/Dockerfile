@@ -1,4 +1,3 @@
-
 FROM openjdk:8-jdk-alpine as build
 WORKDIR /workspace/app
 
