@@ -25,7 +25,7 @@ class UserFeignClientFallbackFactory implements FallbackFactory<UserFeignClient>
     public UserFeignClient create(Throwable throwable) {
         return id -> {
             log.error("进入回退逻辑", throwable);
-            return new User(id, "默认用户", "默认用户", 0, new BigDecimal(1));
+            return new User(-1L, "默认用户", "默认用户", 0, new BigDecimal(1));
         };
     }
 }
