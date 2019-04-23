@@ -11,9 +11,9 @@
     </parent>
 
     <groupId>com.qingteng</groupId>
-    <artifactId>microservice-consumer-movie-ribbon-with-hystrix</artifactId>
+    <artifactId>microservice-consumer-movie-ribbon</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>microservice-consumer-movie-ribbon-with-hystrix</name>
+    <name>microservice-consumer-movie-ribbon</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
