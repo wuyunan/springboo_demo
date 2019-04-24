@@ -12,3 +12,5 @@ eureka:
 zuul:
     routes:
         microservice-provider-user: /users/**
+        microservice-consumer-movie-ribbon: /movie/**
+        microservice-consumer-movie-feign: /movies/**
