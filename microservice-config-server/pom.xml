@@ -74,9 +74,9 @@
     </distributionManagement>
     <repositories>
         <repository>
-            <id>user-release</id>
-            <name>user release resp</name>
-            <url>http://115.159.149.28:8081/nexus/content/repositories/releases/</url>
+            <id>maven-group</id>
+            <name>Nexus Repository</name>
+            <url>http://115.159.149.28:8081/repository/maven-group/</url>
         </repository>
     </repositories>
 </project>

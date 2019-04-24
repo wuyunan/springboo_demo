@@ -86,6 +86,17 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>1.2.0</version>
+                <configuration>
+                    <imageName>wuyunan/${project.artifactId}</imageName>
+                    <dockerDirectory>${project.basedir}</dockerDirectory>
+                    <serverId>registry.hub.docker.com</serverId>
+                    <registryUrl>https://index.docker.io/v1/</registryUrl>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
     <dependencyManagement>
@@ -101,6 +112,24 @@
         </dependencies>
 
     </dependencyManagement>
-
+    <distributionManagement>
+        <repository>
+            <id>user-release</id>
+            <name>user release resp</name>
+            <url>http://115.159.149.28:8081/nexus/content/repositories/releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>user-snapshots</id>
+            <name>user snapshots resp</name>
+            <url>http://115.159.149.28:8081/nexus/content/repositories/snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
+    <repositories>
+        <repository>
+            <id>maven-group</id>
+            <name>Nexus Repository</name>
+            <url>http://115.159.149.28:8081/repository/maven-group/</url>
+        </repository>
+    </repositories>
 
 </project>

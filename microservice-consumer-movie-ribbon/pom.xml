@@ -81,16 +81,27 @@
                     <dockerDirectory>${project.basedir}</dockerDirectory>
                     <serverId>registry.hub.docker.com</serverId>
                     <registryUrl>https://index.docker.io/v1/</registryUrl>
-<!--                    <resources>-->
-<!--                        <resource>-->
-<!--                            <targetPath>/</targetPath>-->
-<!--                            <directory>${project.build.directory}</directory>-->
-<!--                            <include>${project.build.finalName}.jar</include>-->
-<!--                        </resource>-->
-<!--                    </resources>-->
                 </configuration>
             </plugin>
         </plugins>
     </build>
-
+    <distributionManagement>
+        <repository>
+            <id>user-release</id>
+            <name>user release resp</name>
+            <url>http://115.159.149.28:8081/nexus/content/repositories/releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>user-snapshots</id>
+            <name>user snapshots resp</name>
+            <url>http://115.159.149.28:8081/nexus/content/repositories/snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
+    <repositories>
+        <repository>
+            <id>maven-group</id>
+            <name>Nexus Repository</name>
+            <url>http://115.159.149.28:8081/repository/maven-group/</url>
+        </repository>
+    </repositories>
 </project>
