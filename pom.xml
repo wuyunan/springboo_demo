@@ -43,4 +43,18 @@
             <url>http://115.159.149.28:8081/nexus/content/repositories/snapshots/</url>
         </snapshotRepository>
     </distributionManagement>
+    <repositories>
+        <repository>
+            <id>Nexus</id>
+            <name>Nexus Repository</name>
+            <url>http://115.159.149.28:8081/nexus/content/groups/public/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+
+    </repositories>
 </project>
