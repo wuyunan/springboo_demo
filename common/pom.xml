@@ -8,9 +8,11 @@
         <version>2.1.4.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
+    <groupId>com.qingteng</groupId>
     <modelVersion>4.0.0</modelVersion>
-
-    <artifactId>common</artifactId>
+    <artifactId>qingteng-common</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
     <dependencies>
         <dependency>
             <groupId>org.springframework</groupId>
@@ -24,7 +26,7 @@
             <version>2.9.4</version>
             <scope>compile</scope>
         </dependency>
-      
+
     </dependencies>
     <build>
         <plugins>
@@ -38,5 +40,23 @@
             </plugin>
         </plugins>
     </build>
-
+    <distributionManagement>
+        <repository>
+            <id>user-release</id>
+            <name>user release resp</name>
+            <url>http://115.159.149.28:8081/nexus/content/repositories/releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>user-snapshots</id>
+            <name>user snapshots resp</name>
+            <url>http://115.159.149.28:8081/nexus/content/repositories/snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
+    <repositories>
+        <repository>
+            <id>user-release</id>
+            <name>user release resp</name>
+            <url>http://115.159.149.28:8081/nexus/content/repositories/releases/</url>
+        </repository>
+    </repositories>
 </project>

@@ -11,7 +11,7 @@
     </parent>
     <groupId>com.qingteng</groupId>
     <artifactId>demo</artifactId>
-    <version>0.1.0</version>
+    <version>0.0.1-SNAPSHOT</version>
     <dependencies>
         <dependency>
             <groupId>com.qingteng</groupId>
@@ -259,8 +259,8 @@
         </dependency>
         <dependency>
             <groupId>com.qingteng</groupId>
-            <artifactId>common</artifactId>
-            <version>0.0.1</version>
+            <artifactId>qingteng-common</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>
