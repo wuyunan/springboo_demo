@@ -30,6 +30,27 @@ services:
         networks:
             - csnet
 
+    microservice-provider-user:
+        hostname: feign
+        image:  wuyunan/microservice-provider-user
+        container_name: microservice-provider-user
+        ports:
+            - "8000:8000"
+        environment:
+                    - spring.profiles.active=profile1
+        networks:
+            - csnet
+    microservice-provider-user2:
+        hostname: feign
+        image:  wuyunan/microservice-provider-user
+        container_name: microservice-provider-user2
+        ports:
+            - "8001:8001"
+        environment:
+            - spring.profiles.active=profile2
+        networks:
+            - csnet
+
     microservice-consumer-movie-feign:
         hostname: feign
         image:  wuyunan/microservice-consumer-movie-feign
