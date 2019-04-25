@@ -19,15 +19,29 @@ services:
         networks:
             - csnet
 
-    microservice-gateway-zuul:
+    gateway:
         hostname: zuul
         image: wuyunan/microservice-gateway-zuul
         ports:
             - "8051:8051"
         networks:
             - csnet
-
-    microservice-provider-user:
+    config:
+        hostname: config
+        image:  wuyunan/microservice-config-server
+        ports:
+            - "8060:8060"
+        networks:
+            - csnet
+            - csnet
+    hystrix:
+        hostname: hystrix
+        image:  wuyunan/microservice-hystrix
+        ports:
+            - "8070:8070"
+        networks:
+            - csnet
+    provider:
         hostname: user
         image:  wuyunan/microservice-provider-user
         ports:
@@ -36,7 +50,8 @@ services:
             - spring.profiles.active=profile1
         networks:
             - csnet
-    microservice-provider-user2:
+            
+    provider-user2:
         hostname: user2
         image:  wuyunan/microservice-provider-user
         ports:
@@ -46,7 +61,7 @@ services:
         networks:
             - csnet
 
-    microservice-consumer-movie-feign:
+    feign:
         hostname: feign
         image:  wuyunan/microservice-consumer-movie-feign
         ports:
