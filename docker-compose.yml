@@ -33,7 +33,6 @@ services:
             - "8060:8060"
         networks:
             - csnet
-            - csnet
     hystrix:
         hostname: hystrix
         image:  wuyunan/microservice-hystrix

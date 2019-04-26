@@ -20,6 +20,7 @@
         <module>microservice-consumer-movie-ribbon</module>
         <module>microservice-turbine</module>
         <module>microservice-hystrix</module>
+        <module>microservice-auth-server</module>
 
     </modules>
     <build>
