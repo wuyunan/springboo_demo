@@ -67,8 +67,8 @@ swagger:
 # s3 test \u8D26\u53F7
 amazonProperties:
     endpointUrl: https://s3.cn-north-1.amazonaws.com.cn
-    accessKey: AKIAOQCXGAVSNIFF2LEQ
-    secretKey: 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
+    accessKey: AKIAOQCXGAVSNIFF2LEQ0
+    secretKey: 9+Cs2PwzapKAgqBugOpxJ3UXCmyc7hgc3XAV05yc0
     bucketName: crowdsource-uploaded-test
     region: cn-north-1
 
