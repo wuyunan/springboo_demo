@@ -12,6 +12,7 @@
     <groupId>com.qingteng</groupId>
     <artifactId>demo</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <name>qingteng-demo</name>
     <dependencies>
         <dependency>
             <groupId>com.qingteng</groupId>

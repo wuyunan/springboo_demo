@@ -11,7 +11,7 @@
     <groupId>com.qingteng</groupId>
     <artifactId>msg</artifactId>
     <version>0.0.1</version>
-    <name>msg</name>
+    <name>qingteng-msg</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
