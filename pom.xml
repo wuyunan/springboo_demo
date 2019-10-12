@@ -10,10 +10,8 @@
     <description>Demo project for Spring Boot</description>
     <packaging>pom</packaging>
     <modules>
-        <module>qingteng-api</module>
         <module>common</module>
-        <module>qingteng-demo</module>
-        <module>qingteng-msg</module>
+
         <module>microservice-consumer-movie-feign</module>
         <module>microservice-discovery-eureka</module>
         <module>microservice-provider-user</module>
@@ -21,7 +19,10 @@
         <module>microservice-turbine</module>
         <module>microservice-hystrix</module>
         <module>microservice-auth-server</module>
+        <module>qingteng-api</module>
+        <module>qingteng-msg</module>
         <module>qingteng-spide</module>
+        <module>qingteng-demo</module>
     </modules>
     <build>
         <plugins>
