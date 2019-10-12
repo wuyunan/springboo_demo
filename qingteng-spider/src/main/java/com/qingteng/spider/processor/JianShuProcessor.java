@@ -1,11 +1,8 @@
-package com.qingteng.spide.processor;
+package com.qingteng.spider.processor;
 
-import com.qingteng.spide.entity.News;
-import com.qingteng.spide.entity.Sources;
-import com.qingteng.spide.pipeline.NewsPipeline;
+import com.qingteng.spider.entity.News;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
-import us.codecraft.webmagic.Spider;
 import us.codecraft.webmagic.processor.PageProcessor;
 import us.codecraft.webmagic.selector.Selectable;
 
@@ -49,12 +46,5 @@ public class JianShuProcessor implements PageProcessor {
         return site;
     }
 
-    public static void main(String[] args) {
-        Spider spider=Spider.create(new JianShuProcessor());
-        spider.addUrl("http://www.jianshu.com");
-        spider.addPipeline(new NewsPipeline());
-        spider.thread(5);
-        spider.setExitWhenComplete(true);
-        spider.start();
-    }
+
 }

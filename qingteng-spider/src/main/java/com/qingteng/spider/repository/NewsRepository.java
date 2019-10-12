@@ -1,10 +1,10 @@
-package com.qingteng.spide.repository;
+package com.qingteng.spider.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 
-import com.qingteng.spide.entity.News;
+import com.qingteng.spider.entity.News;
 
 
 @Repository

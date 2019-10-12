@@ -1,4 +1,4 @@
-package com.qingteng.spide;
+package com.qingteng.spider;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class SpideApplicationTests {
+public class SpiderApplicationTests {
 
     @Test
     public void contextLoads() {

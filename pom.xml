@@ -21,7 +21,7 @@
         <module>microservice-auth-server</module>
         <module>qingteng-api</module>
         <module>qingteng-msg</module>
-        <module>qingteng-spide</module>
+        <module>qingteng-spider</module>
         <module>qingteng-demo</module>
     </modules>
     <build>

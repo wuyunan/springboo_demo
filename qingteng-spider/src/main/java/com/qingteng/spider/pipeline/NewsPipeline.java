@@ -1,7 +1,7 @@
-package com.qingteng.spide.pipeline;
+package com.qingteng.spider.pipeline;
 
-import com.qingteng.spide.entity.News;
-import com.qingteng.spide.repository.NewsRepository;
+import com.qingteng.spider.entity.News;
+import com.qingteng.spider.repository.NewsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Repository;
